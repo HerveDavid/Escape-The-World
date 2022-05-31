@@ -1,4 +1,4 @@
-package com.mnemosyne.controleurs;
+package com.escape_the_world.controleurs;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

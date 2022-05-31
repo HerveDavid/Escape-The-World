@@ -1,4 +1,4 @@
-package com.mnemosyne.app;
+package com.escape_the_world.app;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-class MnemosyneApplicationTests {
+class EscapeTheWorldApplicationTests {
 
     @Test
     void contextLoads() {

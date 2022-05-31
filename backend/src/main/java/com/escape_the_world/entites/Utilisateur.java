@@ -1,4 +1,4 @@
-package com.mnemosyne.entites;
+package com.escape_the_world.entites;
 
 import lombok.Getter;
 import lombok.Setter;

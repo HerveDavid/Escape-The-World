@@ -1,3 +1,1 @@
-# Mnémosyne
-
-Projet de todo list.
+# Escape the world

@@ -1,4 +1,4 @@
-package com.mnemosyne.runner;
+package com.escape_the_world.runner;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;

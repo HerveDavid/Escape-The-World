@@ -1,4 +1,4 @@
-package com.mnemosyne.app;
+package com.escape_the_world.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,15 +14,15 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan(basePackages = {"com.mnemosyne"})
 @EntityScan("com.mnemosyne.entites")
 @EnableJpaRepositories("com.mnemosyne.repertoires")
-public class MnemosyneApplication extends SpringBootServletInitializer {
+public class EscapeTheWorldApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
-        SpringApplication.run(MnemosyneApplication.class, args);
+        SpringApplication.run(EscapeTheWorldApplication.class, args);
     }
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(MnemosyneApplication.class);
+        return builder.sources(EscapeTheWorldApplication.class);
     }
 
 }

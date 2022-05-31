@@ -1,4 +1,4 @@
-package com.mnemosyne.services;
+package com.escape_the_world.services;
 
 import org.springframework.stereotype.Component;
 
