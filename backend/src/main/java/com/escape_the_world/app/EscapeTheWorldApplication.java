@@ -11,9 +11,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @Configuration
-@ComponentScan(basePackages = {"com.mnemosyne"})
-@EntityScan("com.mnemosyne.entites")
-@EnableJpaRepositories("com.mnemosyne.repertoires")
+@ComponentScan(basePackages = {"com.escape_the_world"})
+@EntityScan("com.escape_the_world.entites")
+@EnableJpaRepositories("com.escape_the_world.repertoires")
 public class EscapeTheWorldApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
