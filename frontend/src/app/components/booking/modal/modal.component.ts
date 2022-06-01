@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Room } from 'src/app/models/room.model';
 
 @Component({
   selector: 'booking-modal',
@@ -7,6 +8,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class ModalComponent implements OnInit {
 
+  @Input() room: any;
   @Output() toggle = new EventEmitter<void>();
 
   constructor() {}

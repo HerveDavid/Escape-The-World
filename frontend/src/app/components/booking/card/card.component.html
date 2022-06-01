@@ -1,12 +1,13 @@
-<div class="flex-col p-4 rounded bg-zinc-50">
+<div class="card-booking">
 
     <div class="relative">
         <img class="rounded" src="https://source.unsplash.com/user/erondu/1600x900">
-        <p class="left-0 m-4 p-2 font-bold text-2xl text-white rounded-md absolute bottom-0">Hold up à Las Vegas</p>
+        <p class="title-booking">{{room.title}}</p>
     </div>
+    
     <div class="mt-4 mb-4">
         <p>
-            Braquez un célèbre Casino de Las Vegas en équipe, tentez d’accéder au coffre fort de l'établissement en moins de 60 minutes et de vous échapper avant l’arrivée de la police ! 
+            {{room.description}}
         </p>
     </div>
 
@@ -18,11 +19,14 @@
     </div>
     <hr>
 
-    <div class="mt-6 flex flex-row justify-between align-middle">
+    <div class="footer-booking">
         <p class="self-center text-sm">
-            60 MIN | 3-5 JOUEURS
+            {{room.duration}} MIN | {{room.minPlayers}}-{{room.maxPlayers}} JOUEURS
         </p>
-        <booking-button (click)="toggleModal()"></booking-button>
+        <button class="btn-booking" type="button" (click)="toggleModal()">
+            Réserver
+        </button>
     </div>
 </div>
-<booking-modal *ngIf="showModal" (toggle)="toggleModal()"></booking-modal>
+
+<booking-modal *ngIf="showModal" [room]="room" (toggle)="toggleModal()"></booking-modal>

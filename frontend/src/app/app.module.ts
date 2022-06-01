@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BookingComponent } from './pages/booking/booking.component';
 import { CardComponent } from './components/booking/card/card.component';
 import { ModalComponent } from './components/booking/modal/modal.component';
-import { ButtonComponent } from './components/booking/button/button.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +13,6 @@ import { ButtonComponent } from './components/booking/button/button.component';
     BookingComponent,
     CardComponent,
     ModalComponent,
-    ButtonComponent
   ],
   imports: [
     BrowserModule,
