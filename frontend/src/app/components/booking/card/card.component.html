@@ -22,6 +22,7 @@
         <p class="self-center text-sm">
             60 MIN | 3-5 JOUEURS
         </p>
-        <booking-button></booking-button>
+        <booking-button (click)="toggleModal()"></booking-button>
     </div>
 </div>
+<booking-modal *ngIf="showModal" (toggle)="toggleModal()"></booking-modal>

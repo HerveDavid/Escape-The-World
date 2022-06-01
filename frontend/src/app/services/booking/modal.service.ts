@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class BookingService {
+export class ModalService {
 
-  showModal = false;
+  isOpen = false;
 
   constructor() { }
 
-  toggleModal() {
-    this.showModal = !this.showModal;
+  toggle() {
+    this.isOpen = !this.isOpen;
   }
 
 }

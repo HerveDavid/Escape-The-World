@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'booking-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss']
+  styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit {
 
-  constructor() { }
+  @Output() toggle = new EventEmitter<void>();
+
+  constructor() {}
 
   ngOnInit(): void {
+  }
+
+  onModalToggle() {
+    this.toggle.emit();
   }
 
 }
