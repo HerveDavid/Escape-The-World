@@ -12,8 +12,8 @@
         @apply left-0 m-4 p-2 font-bold text-2xl text-white rounded-md absolute bottom-0;
     }
 
-    .btn-booking {
-        @apply bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150;
+    .btn-action {
+        @apply font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150;
     }
 
     .footer-booking {

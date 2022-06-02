@@ -13,7 +13,7 @@ export class CardComponent implements OnInit {
     title: "Hold up à Las Vegas",
     description: "Barquez un célèbre Casino de Las Vegas en équipe, tentez d’accéder au coffre fort de l'établissement en moins de 60 minutes et de vous échapper avant l’arrivée de la police !",
     longDescription: "Barquez un célèbre Casino de Las Vegas en équipe, tentez d’accéder au coffre fort de l'établissement en moins de 60 minutes et de vous échapper avant l’arrivée de la police !",
-    duration: 0,
+    duration: 60,
     minPlayers: 3,
     maxPlayers: 5,
   }
