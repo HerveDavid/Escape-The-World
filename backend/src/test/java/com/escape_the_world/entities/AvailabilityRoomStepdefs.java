@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AvailabilityRoomStepdefs {
 
@@ -51,8 +52,6 @@ public class AvailabilityRoomStepdefs {
             assertEquals(columns.get(0), availability.getSchedule().toString());
             assertEquals(getFrToUkStatus(columns.get(1)), availability.getStatus());
 
-            System.out.println(columns.get(0));
-
             index++;
         }
     }
@@ -60,5 +59,20 @@ public class AvailabilityRoomStepdefs {
     @Et("indisponible entre {string} et {string}")
     public void indisponibleEntreEt(String start, String end) {
         room.setUnavailabilityBetween(LocalTime.parse(start), LocalTime.parse(end));
+    }
+
+    @Alors("je reçois aucune disponibilités")
+    public void jeReçoisAucuneDisponibilités() {
+        assertTrue(room.getAvailabilities().isEmpty());
+    }
+
+    @Et("de status {string}")
+    public void deStatus(String status) {
+        room.setStatus("disponible".equals(status) ? RoomStatus.AVAILABLE : RoomStatus.UNAVAILABLE);
+    }
+
+    @Quand("je change le status à {string}")
+    public void jeChangeLeStatusÀ(String status) {
+        room.setStatus("disponible".equals(status) ? RoomStatus.AVAILABLE : RoomStatus.UNAVAILABLE);
     }
 }
