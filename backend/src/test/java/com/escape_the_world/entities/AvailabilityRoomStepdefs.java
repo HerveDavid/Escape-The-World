@@ -18,12 +18,20 @@ public class AvailabilityRoomStepdefs {
     private Room room;
     private ArrayList<Availability> availabilities;
 
-    // Helper
-    private AvailabilityStatus getFrToUkStatus(final String status) {
+    // Helpers
+    private AvailabilityStatus getFrToUkAvailabilityStatus(final String status) {
         if("disponible".equals(status)) {
             return AvailabilityStatus.AVAILABLE;
         } else {
             return AvailabilityStatus.UNAVAILABLE;
+        }
+    }
+
+    private RoomStatus getFrToUkRoomStatus(final String status) {
+        if("disponible".equals(status)) {
+            return RoomStatus.AVAILABLE;
+        } else {
+            return RoomStatus.UNAVAILABLE;
         }
     }
 
@@ -50,7 +58,7 @@ public class AvailabilityRoomStepdefs {
             Availability availability = availabilities.get(index);
 
             assertEquals(columns.get(0), availability.getSchedule().toString());
-            assertEquals(getFrToUkStatus(columns.get(1)), availability.getStatus());
+            assertEquals(getFrToUkAvailabilityStatus(columns.get(1)), availability.getStatus());
 
             index++;
         }
@@ -68,11 +76,11 @@ public class AvailabilityRoomStepdefs {
 
     @Et("de status {string}")
     public void deStatus(String status) {
-        room.setStatus("disponible".equals(status) ? RoomStatus.AVAILABLE : RoomStatus.UNAVAILABLE);
+        room.setStatus(getFrToUkRoomStatus(status));
     }
 
     @Quand("je change le status à {string}")
     public void jeChangeLeStatusÀ(String status) {
-        room.setStatus("disponible".equals(status) ? RoomStatus.AVAILABLE : RoomStatus.UNAVAILABLE);
+        room.setStatus(getFrToUkRoomStatus(status));
     }
 }
