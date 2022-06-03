@@ -6,11 +6,11 @@ import io.cucumber.java.fr.Et;
 import io.cucumber.java.fr.Etantdonné;
 import io.cucumber.java.fr.Quand;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AvailabilityRoomStepdefs {
 
@@ -31,11 +31,6 @@ public class AvailabilityRoomStepdefs {
         room = new Room();
     }
 
-    @Et("disponible pour toute la journée")
-    public void disponiblePourTouteLaJournée() {
-        room.setAvailabilityAllJourney(true);
-    }
-
     @Et("d'une durée de session de {long} min")
     public void dUneDuréeDeSessionDeMin(long duration) {
         room.setDuration(duration);
@@ -52,9 +47,18 @@ public class AvailabilityRoomStepdefs {
         int index = 0;
         for (List<String> columns : rows) {
             Availability availability = availabilities.get(index);
+
             assertEquals(columns.get(0), availability.getSchedule().toString());
             assertEquals(getFrToUkStatus(columns.get(1)), availability.getStatus());
+
+            System.out.println(columns.get(0));
+
             index++;
         }
+    }
+
+    @Et("indisponible entre {string} et {string}")
+    public void indisponibleEntreEt(String start, String end) {
+        room.setUnavailabilityBetween(LocalTime.parse(start), LocalTime.parse(end));
     }
 }
