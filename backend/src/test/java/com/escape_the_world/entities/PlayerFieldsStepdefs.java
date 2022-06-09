@@ -13,7 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PlayerFieldsStepdefs {
 
-    private Player player;
+    private Player player = new Player();
+    private boolean isValidMail = false;
 
     @Etantdonné("un joueur")
     public void unJoueur() {
@@ -64,5 +65,21 @@ public class PlayerFieldsStepdefs {
     public void leJoueurAPourDateDeNaissance(String birthday) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
         assertEquals(birthday, dateFormat.format(player.getBirthday()));
+    }
+
+    @Etantdonné("le courriel {string}")
+    public void leCourriel(String mail) {
+        player.setMail(mail);
+    }
+
+    @Quand("je valide ce courriel")
+    public void jeValideCeCourriel() {
+        isValidMail = player.isValidMail();
+    }
+
+    @Alors("ce courriel est {string}")
+    public void ceCourrielEstValidite(String validite) {
+        boolean valid = "valide".equals(validite);
+        assertEquals(valid, isValidMail);
     }
 }

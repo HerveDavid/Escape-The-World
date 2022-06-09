@@ -14,3 +14,22 @@ Fonctionnalité: Implementation des attributs d'un joueur
     Et le joueur a pour courriel "john.doe@gmail.com"
     Et le joueur a pour date de naissance "2021-12-29"
 
+  Plan du Scénario: le courriel doit être dans le format "****@*.*"
+    Etant donné le courriel <courriel>
+    Quand je valide ce courriel
+    Alors ce courriel est <validite>
+
+    Exemples: courriels valides
+      | courriel                | validite |
+      | "username@domain.com"   | "valide" |
+      | "user.name@domain.com"  | "valide" |
+      | "user-name@domain.com"  | "valide" |
+      | "username@domain.co.in" | "valide" |
+      | "user_name@domain.com"  | "valide" |
+
+    Exemples: courriels invalides
+      | courriel                | validite   |
+      | "username.@domain.com"  | "invalide" |
+      | ".user.name@domain.com" | "invalide" |
+      | "user-name@domain.com." | "invalide" |
+      | "username@.com"         | "invalide" |
