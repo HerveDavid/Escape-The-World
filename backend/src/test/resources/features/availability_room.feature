@@ -5,20 +5,21 @@ Fonctionnalité: Implémentation des disponibilités pour les joueurs d'une sall
 #  Contexte:
 #    Etant donné l'horaire d'ouverture de Escape The World "8:00"
 #    Et l'horaire de fermeture de Escape The World "23:00"
+#    Et aujourd'hui le 10 mai 2022
 
   Scénario: une salle d'escape game prends la même durée pour sa préparation (ex: 60 min)
     Etant donné une salle d'escape game
     Et d'une durée de session de 60 min
-    Quand je demande les disponibilités
+    Quand je demande les disponibilités pour aujourd'hui
     Alors je reçois les disponibilités suivantes :
-      | 08:00 | disponible |
-      | 10:00 | disponible |
-      | 12:00 | disponible |
-      | 14:00 | disponible |
-      | 16:00 | disponible |
-      | 18:00 | disponible |
-      | 20:00 | disponible |
-      | 22:00 | disponible |
+      | 10-05-2022 08:00 | disponible |
+      | 10-05-2022 10:00 | disponible |
+      | 10-05-2022 12:00 | disponible |
+      | 10-05-2022 14:00 | disponible |
+      | 10-05-2022 16:00 | disponible |
+      | 10-05-2022 18:00 | disponible |
+      | 10-05-2022 20:00 | disponible |
+      | 10-05-2022 22:00 | disponible |
 
   Scénario: une salle d'escape game prends la même durée pour sa préparation (ex: 30 min)
     Etant donné une salle d'escape game

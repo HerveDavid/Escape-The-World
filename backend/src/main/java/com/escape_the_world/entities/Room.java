@@ -5,8 +5,7 @@ import lombok.Setter;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.Date;
 
 
 public class Room {
@@ -48,4 +47,9 @@ public class Room {
         return availabilities;
     }
 
+    public ArrayList<Availability> getAvailabilities(final Date date) {
+        if(status.equals(RoomStatus.UNAVAILABLE))
+            return new ArrayList<>();
+        return availabilities;
+    }
 }

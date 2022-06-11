@@ -6,8 +6,11 @@ import io.cucumber.java.fr.Et;
 import io.cucumber.java.fr.Etantdonné;
 import io.cucumber.java.fr.Quand;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -82,5 +85,19 @@ public class AvailabilityRoomStepdefs {
     @Quand("je change le status à {string}")
     public void jeChangeLeStatusÀ(String status) {
         room.setStatus(getFrToUkRoomStatus(status));
+    }
+
+    @Quand("je demande les disponibilités pour aujourd'hui")
+    public void jeDemandeLesDisponibilitésPourAujourdHui() {
+        String date_time = "11/05/2021";
+        SimpleDateFormat dateParser = new SimpleDateFormat("dd/MM/yy");
+        Date today = null;
+        try {
+            today = dateParser.parse(date_time);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        } finally {
+            availabilities = room.getAvailabilities(today);
+        }
     }
 }
