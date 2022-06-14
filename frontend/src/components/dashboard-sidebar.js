@@ -28,6 +28,11 @@ const items = [
     title: 'Customers'
   },
   {
+    href: '/rooms',
+    icon: (<ShoppingBagIcon fontSize="small" />),
+    title: 'Rooms'
+  },
+  {
     href: '/products',
     icon: (<ShoppingBagIcon fontSize="small" />),
     title: 'Products'
