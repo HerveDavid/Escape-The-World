@@ -7,6 +7,7 @@ import { BookingComponent } from './pages/booking/booking.component';
 import { CardComponent } from './components/booking/card/card.component';
 import { ModalComponent } from './components/booking/modal/modal.component';
 import { AvailabilityComponent } from './components/booking/availability/availability.component';
+import { HeaderComponent } from './components/utils/header/header.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { AvailabilityComponent } from './components/booking/availability/availab
     CardComponent,
     ModalComponent,
     AvailabilityComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
