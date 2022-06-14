@@ -12,6 +12,7 @@ import { ShoppingBag as ShoppingBagIcon } from '../icons/shopping-bag';
 import { User as UserIcon } from '../icons/user';
 import { UserAdd as UserAddIcon } from '../icons/user-add';
 import { Users as UsersIcon } from '../icons/users';
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { XCircle as XCircleIcon } from '../icons/x-circle';
 import { Logo } from './logo';
 import { NavItem } from './nav-item';
@@ -29,13 +30,8 @@ const items = [
   },
   {
     href: '/rooms',
-    icon: (<ShoppingBagIcon fontSize="small" />),
+    icon: (<MeetingRoomIcon fontSize="small" />),
     title: 'Rooms'
-  },
-  {
-    href: '/products',
-    icon: (<ShoppingBagIcon fontSize="small" />),
-    title: 'Products'
   },
   {
     href: '/account',

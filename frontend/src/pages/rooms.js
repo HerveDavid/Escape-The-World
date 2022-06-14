@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Box, Container, Grid, Pagination } from '@mui/material';
+import { Box, Container, Grid, Typography } from '@mui/material';
 import { rooms } from '../__mocks__/rooms';
 import { RoomListToolBar } from '../components/room/room-list-toolbar';
 import { DashboardLayout } from '../components/dashboard-layout';
@@ -38,19 +38,6 @@ const Rooms = () => (
               </Grid>
             ))}
           </Grid>
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            pt: 3
-          }}
-        >
-          <Pagination
-            color="primary"
-            count={3}
-            size="small"
-          />
         </Box>
       </Container>
     </Box>
