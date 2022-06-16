@@ -8,77 +8,23 @@ import {
   InputAdornment,
   SvgIcon,
   Typography,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
 } from "@mui/material";
 import { Download as DownloadIcon } from "../../icons/download";
 import { Search as SearchIcon } from "../../icons/search";
 import { Upload as UploadIcon } from "../../icons/upload";
+import { AddRoomDialog } from 'src/components/room/room-add-dialog';
 
-function AddRoomDialog(props) {
-  const { onClose, open } = props;
-
-  const handleClose = () => {
-    onClose();
-  }
-
-  return (
-    <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Add room</DialogTitle>
-      <DialogContent>
-        <DialogContentText>
-          To add a new room, please enter a title, description and capacity.
-        </DialogContentText>
-        <TextField
-          autoFocus
-          margin="dense"
-          id="title"
-          label="Room title"
-          type="text"
-          fullWidth
-          variant="standard"
-        />
-        <TextField
-          autoFocus
-          margin="dense"
-          id="description"
-          label="Description"
-          fullWidth
-          variant="standard"
-        />
-        <TextField
-          autoFocus
-          margin="dense"
-          id="capacity"
-          label="Capacity"
-          type="number"
-          fullWidth
-          variant="standard"
-        />
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleClose}>Subscribe</Button>
-      </DialogActions>
-    </Dialog>
-  )
-
-}
 
 export function RoomListToolBar(props) {
-
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
-  }
+  };
 
   const handleClose = () => {
     setOpen(false);
-  }
+  };
 
   return (
     <Box {...props}>
@@ -105,11 +51,7 @@ export function RoomListToolBar(props) {
           <Button color="primary" variant="contained" onClick={handleClickOpen}>
             Add room
           </Button>
-          <AddRoomDialog
-            open={open}
-            onClose={handleClose}
-          />
-
+          <AddRoomDialog open={open} onClose={handleClose} />
         </Box>
       </Box>
       <Box sx={{ mt: 3 }}>
