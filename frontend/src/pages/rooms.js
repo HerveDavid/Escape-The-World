@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { Box, Container, Grid, Typography } from '@mui/material';
 import { rooms } from '../__mocks__/rooms';
-import { RoomListToolBar } from '../components/room/room-list-toolbar';
+import { RoomListToolBar }  from '../components/room/room-list-toolbar';
 import { DashboardLayout } from '../components/dashboard-layout';
 import { RoomCard } from '../components/room/room-card';
 
