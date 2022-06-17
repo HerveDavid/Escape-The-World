@@ -14,7 +14,7 @@ public class RoomController {
 
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     public Room get(@PathVariable(name = "id") String id) {
-        return roomService.getRoomById(id);
+        return roomService.getById(id);
     }
 
     @RequestMapping(method = RequestMethod.PUT)

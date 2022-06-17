@@ -15,7 +15,7 @@ public class RoomService {
         return roomRepository.save(room);
     }
 
-    public Room getRoomById(String id) {
+    public Room getById(String id) {
         return roomRepository.findById(id).get();
     };
 

@@ -23,5 +23,4 @@ public class Unavailability {
     @Getter @Setter
     private DateTime schedule;
 
-
 }
