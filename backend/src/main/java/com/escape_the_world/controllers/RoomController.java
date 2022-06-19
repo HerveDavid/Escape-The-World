@@ -5,6 +5,8 @@ import com.escape_the_world.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/room")
 public class RoomController {
@@ -20,6 +22,11 @@ public class RoomController {
     @RequestMapping(method = RequestMethod.PUT)
     public Room createOrUpdate(@RequestBody Room room) {
         return roomService.createOrUpdate(room);
+    }
+
+    @RequestMapping(path = "/all", method = RequestMethod.GET)
+    public List<Room> getAll() {
+        return roomService.getAll();
     }
 
 }
