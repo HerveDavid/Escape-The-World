@@ -68,6 +68,7 @@ export function AddRoomDialog(props) {
             required
             {...register('title')}
             error={errors.title ? true : false}
+            sx={{ marginTop: 5 }}
           />
           <TextField
             autoFocus

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Avatar, Box, Card, CardContent, Divider, Grid, Typography } from '@mui/material';
 import { Clock as ClockIcon } from '../../icons/clock';
+import PeopleIcon from '@mui/icons-material/People';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 export const RoomCard = ({ room, ...rest }) => (
@@ -74,6 +75,25 @@ export const RoomCard = ({ room, ...rest }) => (
             display: 'flex'
           }}
         >
+          <PeopleIcon color="action" />
+          <Typography
+            color="textSecondary"
+            display="inline"
+            sx={{ pl: 1 }}
+            variant="body2"
+          >
+            {room.capacity}
+            {' '}
+            Capacity
+          </Typography>
+        </Grid>
+        <Grid
+          item
+          sx={{
+            alignItems: 'center',
+            display: 'flex'
+          }}
+        >
           <CalendarMonthIcon color="action" />
           <Typography
             color="textSecondary"
@@ -81,7 +101,7 @@ export const RoomCard = ({ room, ...rest }) => (
             sx={{ pl: 1 }}
             variant="body2"
           >
-            {room.totalDownloads}
+            {room.bookings}
             {' '}
             Bookings
           </Typography>
