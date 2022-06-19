@@ -17,7 +17,7 @@ public class Room {
 
     @Id @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
-    @Getter @Setter
+    @Getter
     private String id;
 
     @Column

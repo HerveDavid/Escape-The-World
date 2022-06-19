@@ -1,4 +1,4 @@
-package com.escape_the_world.entities;
+package com.escape_the_world.requests;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,7 +1,7 @@
 package com.escape_the_world.controllers;
 
 import com.escape_the_world.entities.Room;
-import com.escape_the_world.entities.RoomPagination;
+import com.escape_the_world.requests.RoomPagination;
 import com.escape_the_world.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -36,6 +36,11 @@ public class RoomController {
     @RequestMapping(path = "/pagination", method = RequestMethod.GET)
     public Page<Room> getAllPagination(@RequestBody RoomPagination pagination) {
         return roomService.getAll(PageRequest.of(pagination.getStart(), pagination.getSize()));
+    }
+
+    @RequestMapping(path = "/remove/{id}", method = RequestMethod.DELETE)
+    public void remove(@PathVariable(name = "id") String id) {
+        roomService.remove(id);
     }
 
 }

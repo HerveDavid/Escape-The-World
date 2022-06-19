@@ -1,4 +1,3 @@
-import * as React from 'react';
 import * as Yup from 'yup';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -15,21 +14,19 @@ import {
 import { API_URL } from 'src/utils/api-endpoint';
 
 const validationSchema = Yup.object().shape({
-    title: Yup.string()
-        .required('Room title is required'),
+    title: Yup.string(),
     description: Yup.string()
-        .required('Room description is required')
         .max(300, 'Description should be minimaliste'),
     capacity: Yup.number()
-        .required('Room capacity is required')
         .min(1, 'need one player')
         .max(50, "room can't host more 50 players"),
     duration: Yup.number()
-      .required(1, 'need one minute')
+      .min(1, 'need one minute')
 });
 
-export function AddRoomDialog(props) {
-  const { onClose, open } = props;
+export function SettingsRoomDialog(props) {
+  
+  const { onClose, open, room } = props;
   const {
     register,
     handleSubmit,
@@ -49,16 +46,26 @@ export function AddRoomDialog(props) {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify({...data, id: room.id})
     })
+  }
+
+  async function handleRemove() {
+    await fetch(API_URL + "/room/remove/" + room.id, {
+      method: 'DELETE',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+    });
   }
 
   return (
     <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Add room</DialogTitle>
+      <DialogTitle>Setting room</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          To add a new room, please enter a title, description and capacity.
+          Modification of room
         </DialogContentText>
         <FormControl>
           <TextField
@@ -67,9 +74,9 @@ export function AddRoomDialog(props) {
             id="title"
             label="Room title"
             type="text"
+            defaultValue={room.title}
             fullWidth
             variant="outlined"
-            required
             {...register('title')}
             error={errors.title ? true : false}
             sx={{ marginTop: 5 }}
@@ -79,10 +86,10 @@ export function AddRoomDialog(props) {
             margin="dense"
             id="description"
             label="Description"
+            defaultValue={room.description}
             fullWidth
             variant="outlined"
             multiline
-            required
             {...register('description')}
             error={errors.description ? true : false}
           />
@@ -91,10 +98,10 @@ export function AddRoomDialog(props) {
             margin="dense"
             id="capacity"
             label="Capacity"
+            defaultValue={room.capacity}
             type="number"
             fullWidth
             variant="outlined"
-            required
             {...register('capacity')}
             error={errors.capacity ? true : false}
           />
@@ -103,18 +110,19 @@ export function AddRoomDialog(props) {
             margin="dense"
             id="duration"
             label="Duration"
+            defaultValue={room.duration}
             type="number"
             fullWidth
             variant="outlined"
-            required
             {...register('duration')}
             error={errors.duration ? true : false}
           />
         </FormControl>
       </DialogContent>
       <DialogActions>
+        <Button onClick={handleRemove} sx={{ color: 'red' }}>Remove</Button>
         <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleSubmit(onSubmit)}>Add</Button>
+        <Button onClick={handleSubmit(onSubmit)}>Change</Button>
       </DialogActions>
     </Dialog>
   );

@@ -57,12 +57,12 @@ export async function getStaticProps() {
   const res = await fetch(API_URL + '/room/all')
   const rooms = await res.json()
   
-    return {
-      props: {
-        rooms,
-      },
-      revalidate: 1,
-    }
+  return {
+    props: {
+      rooms,
+    },
+    revalidate: 1,
   }
+}
 
 export default Rooms;

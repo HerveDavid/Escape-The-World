@@ -31,4 +31,8 @@ public class RoomService {
         return roomRepository.findAll(pr);
     }
 
+    public void remove(final String id) {
+        roomRepository.deleteById(id);
+    }
+
 }
