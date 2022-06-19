@@ -3,6 +3,8 @@ package com.escape_the_world.services;
 import com.escape_the_world.entities.Room;
 import com.escape_the_world.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +25,10 @@ public class RoomService {
 
     public List<Room> getAll() {
         return roomRepository.findAll();
+    }
+
+    public Page<Room> getAll(PageRequest pr) {
+        return roomRepository.findAll(pr);
     }
 
 }

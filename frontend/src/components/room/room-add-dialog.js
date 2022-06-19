@@ -13,6 +13,7 @@ import {
   FormControl,
 } from "@mui/material";
 import { TurnedIn } from '@mui/icons-material';
+import { API_URL } from 'src/utils/api-endpoint';
 
 const validationSchema = Yup.object().shape({
     title: Yup.string()
@@ -24,6 +25,8 @@ const validationSchema = Yup.object().shape({
         .required('Room capacity is required')
         .min(1, 'need one player')
         .max(50, "room can't host more 50 players"),
+    duration: Yup.number()
+      .required(1, 'need one minute')
 });
 
 export function AddRoomDialog(props) {
@@ -41,12 +44,16 @@ export function AddRoomDialog(props) {
     onClose();
   };
 
-  const isValidForm = errors => {
-    return !errors;
-  }
-
-  const onSubmit = data => {
-      console.log(JSON.stringify(data, null, 2));
+  async function onSubmit(data) {
+    await fetch(API_URL + '/room', {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(console.log)
   }
 
   return (
@@ -94,11 +101,23 @@ export function AddRoomDialog(props) {
             {...register('capacity')}
             error={errors.capacity ? true : false}
           />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="duration"
+            label="Duration"
+            type="number"
+            fullWidth
+            variant="outlined"
+            required
+            {...register('duration')}
+            error={errors.duration ? true : false}
+          />
         </FormControl>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleSubmit(onSubmit)}>Subscribe</Button>
+        <Button onClick={handleSubmit(onSubmit)}>Add</Button>
       </DialogActions>
     </Dialog>
   );

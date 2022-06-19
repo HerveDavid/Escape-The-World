@@ -20,7 +20,6 @@ public class Room {
     @Getter @Setter
     private String id;
 
-
     @Column
     @CreationTimestamp
     @Getter @Setter
@@ -42,7 +41,6 @@ public class Room {
     @Column
     @Getter @Setter
     private String description;
-
 
     @Column
     @Getter @Setter

@@ -101,7 +101,7 @@ export const RoomCard = ({ room, ...rest }) => (
             sx={{ pl: 1 }}
             variant="body2"
           >
-            {room.bookings}
+            {room.bookings || 0}
             {' '}
             Bookings
           </Typography>
