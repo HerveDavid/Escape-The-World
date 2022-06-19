@@ -5,8 +5,6 @@ import com.escape_the_world.services.UnavailabilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/availability")
 public class UnavailabilityController {
@@ -30,7 +28,7 @@ public class UnavailabilityController {
     }
 
     @RequestMapping(path = "/room/{id}", method = RequestMethod.GET)
-    public List<Unavailability> getForRoom(@PathVariable(name = "id") String id) {
+    public Unavailability getForRoom(@PathVariable(name = "id") String id) {
         return unavailabilityService.getById(id);
     }
 
