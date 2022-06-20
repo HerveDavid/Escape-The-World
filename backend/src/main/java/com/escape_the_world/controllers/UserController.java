@@ -1,8 +1,8 @@
 package com.escape_the_world.controllers;
 
-import com.escape_the_world.entities.Room;
+import com.escape_the_world.entities.User;
 import com.escape_the_world.requests.PaginationRequest;
-import com.escape_the_world.services.RoomService;
+import com.escape_the_world.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,35 +12,35 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/room")
-public class RoomController {
+@RequestMapping("/user")
+public class UserController {
 
     @Autowired
-    private RoomService roomService;
+    private UserService userService;
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
-    public Room get(@PathVariable(name = "id") String id) {
-        return roomService.getById(id);
+    @RequestMapping(path = "/{username}", method = RequestMethod.GET)
+    public User get(@PathVariable(name = "username") String username) {
+        return userService.getByUsername(username);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public Room createOrUpdate(@RequestBody Room room) {
-        return roomService.createOrUpdate(room);
+    public User createOrUpdate(@RequestBody User user) {
+        return userService.createOrUpdate(user);
     }
 
     @RequestMapping(path = "/all", method = RequestMethod.GET)
-    public List<Room> getAll() {
-        return roomService.getAll();
+    public List<User> getAll() {
+        return userService.getAll();
     }
 
     @RequestMapping(path = "/pagination", method = RequestMethod.GET)
-    public Page<Room> getAllPagination(@RequestBody PaginationRequest pagination) {
-        return roomService.getAll(PageRequest.of(pagination.getStart(), pagination.getSize()));
+    public Page<User> getAllPagination(@RequestBody PaginationRequest pagination) {
+        return userService.getAll(PageRequest.of(pagination.getStart(), pagination.getSize()));
     }
 
     @RequestMapping(path = "/remove/{id}", method = RequestMethod.DELETE)
     public void remove(@PathVariable(name = "id") String id) {
-        roomService.remove(id);
+        userService.remove(id);
     }
 
 }

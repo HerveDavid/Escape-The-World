@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RoomPagination {
+public class PaginationRequest {
 
     private int start;
     private int size;

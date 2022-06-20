@@ -28,26 +28,21 @@ const Register = () => {
     validationSchema: Yup.object({
       email: Yup
         .string()
-        .email(
-          'Must be a valid email')
+        .email('Must be a valid email')
         .max(255)
-        .required(
-          'Email is required'),
+        .required('Email is required'),
       firstName: Yup
         .string()
         .max(255)
-        .required(
-          'First name is required'),
+        .required('First name is required'),
       lastName: Yup
         .string()
         .max(255)
-        .required(
-          'Last name is required'),
+        .required('Last name is required'),
       password: Yup
         .string()
         .max(255)
-        .required(
-          'Password is required'),
+        .required('Password is required'),
       policy: Yup
         .boolean()
         .oneOf(
@@ -55,7 +50,8 @@ const Register = () => {
           'This field must be checked'
         )
     }),
-    onSubmit: () => {
+    onSubmit: (data) => {
+      console.log(data);
       router.push('/');
     }
   });
@@ -64,7 +60,7 @@ const Register = () => {
     <>
       <Head>
         <title>
-          Register | Material Kit
+          Register
         </title>
       </Head>
       <Box

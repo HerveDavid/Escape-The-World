@@ -20,5 +20,4 @@ public class OpenApiConfig {
         return GroupedOpenApi.builder().group("Complete").pathsToMatch("/**").build();
     }
 
-
 }
