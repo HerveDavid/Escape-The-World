@@ -1,13 +1,18 @@
 package com.escape_the_world.controllers;
 
+import com.escape_the_world.dto.reponses.RegisterReponse;
+import com.escape_the_world.dto.requests.PaginationRequest;
+import com.escape_the_world.dto.requests.RegisterRequest;
 import com.escape_the_world.entities.User;
-import com.escape_the_world.requests.PaginationRequest;
+import com.escape_the_world.exceptions.RessourceAlreadyExistException;
 import com.escape_the_world.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,9 +28,21 @@ public class UserController {
         return userService.getByUsername(username);
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
+    @RequestMapping(path = "/update", method = RequestMethod.PUT)
     public User createOrUpdate(@RequestBody User user) {
         return userService.createOrUpdate(user);
+    }
+
+
+    @RequestMapping(path = "/register", method = RequestMethod.POST)
+    public ResponseEntity<?> register(@RequestBody @Valid RegisterRequest request) throws RessourceAlreadyExistException {
+        User user = userService.register(request);
+        return ResponseEntity.ok(new RegisterReponse(
+                user.getUsername(),
+                user.getFirstname(),
+                user.getLastname(),
+                user.getEmail()
+        ));
     }
 
     @RequestMapping(path = "/all", method = RequestMethod.GET)

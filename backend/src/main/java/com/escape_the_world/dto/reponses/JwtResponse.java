@@ -1,4 +1,4 @@
-package com.escape_the_world.reponses;
+package com.escape_the_world.dto.reponses;
 
 
 import java.io.Serializable;

@@ -1,7 +1,7 @@
 package com.escape_the_world.controllers;
 
 import com.escape_the_world.entities.Room;
-import com.escape_the_world.requests.PaginationRequest;
+import com.escape_the_world.dto.requests.PaginationRequest;
 import com.escape_the_world.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

@@ -1,6 +1,6 @@
 package com.escape_the_world.configurations;
 
-import com.escape_the_world.filter.JwtRequestFilter;
+import com.escape_the_world.dto.filters.JwtRequestFilter;
 import com.escape_the_world.security.JwtAuthenticationEntryPoint;
 import com.escape_the_world.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +23,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserService userService;
+
     @Autowired
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
     @Autowired
-    private UserDetailsService jwtUserDetailsService;
+    private UserDetailsService userDetailsService;
 
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
@@ -37,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoderConfig.getPasswordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoderConfig.getPasswordEncoder());
     }
 
     @Bean
@@ -54,12 +55,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
-                .authorizeRequests().antMatchers("/authenticate", "/api", "/api/**", "/swagger-ui/**").permitAll()
-                .antMatchers("/users/password", "/users/delete", "/plants/delete").hasRole("ADMIN")
+                .authorizeRequests().antMatchers("/authenticate", "/api", "/api/**", "/swagger-ui/**", "/user/register").permitAll()
                 .anyRequest().authenticated().and().exceptionHandling()
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+//                        .antMatchers("/users/password", "/users/delete", "/plants/delete").hasRole("ADMIN")
     }
 
 }

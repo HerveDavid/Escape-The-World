@@ -1,17 +1,21 @@
 package com.escape_the_world.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     @Id
@@ -19,29 +23,23 @@ public class User {
     private String username;
 
     @Column
-    @NotEmpty
-    @NotNull
+    @NotBlank(message = "Firstname is mandatory")
     private String firstname;
 
     @Column
-    @NotEmpty
-    @NotNull
+    @NotBlank(message = "Lastname is mandatory")
     private String lastname;
 
     @Column
-    @NotEmpty
-    @NotNull
+    @NotBlank(message = "Email is mandatory")
     private String email;
 
     @Column
-    @NotEmpty
-    @NotNull
-    private Role role;
+    @NotNull(message = "User is mandatory")
+    private Role role = Role.PLAYER;
 
     @Column
-    @NotEmpty
-    @NotNull
+    @NotBlank(message = "Password is mandatory")
     @JsonIgnore
     private String password;
-
 }
