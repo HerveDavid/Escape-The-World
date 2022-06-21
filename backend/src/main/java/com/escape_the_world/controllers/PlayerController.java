@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 @RestController
-@RequestMapping("/v1/players")
+@RequestMapping("/players")
 @Slf4j
 class PlayerController {
 
