@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.escape_the_world.entities.players.Credentials;
 import com.escape_the_world.entities.players.Player;
-import com.escape_the_world.services.security.AuthorizationFailureException;
-import com.escape_the_world.services.security.SecurityContextAccessor;
+import com.escape_the_world.repositories.PlayerRepository;
+import com.escape_the_world.system.EntityCreatedEvent;
+import com.escape_the_world.system.security.AuthorizationFailureException;
+import com.escape_the_world.system.security.SecurityContextAccessor;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,7 +25,7 @@ public class PlayerService {
     private PlayerRepository repository;
 
     @Autowired
-    PasswordEncoder passwordEncoder;
+    public static PasswordEncoder passwordEncoder;
 
     @Autowired
     private SecurityContextAccessor securityContextAccessor;
@@ -33,17 +35,14 @@ public class PlayerService {
 
     public Player createPlayer(final Player player) {
 
-        //encode password before saving.
         final String plainPassword = player.getCredentials().getPassword();
         final String encodedPassword = passwordEncoder.encode(plainPassword);
         player.getCredentials().setPassword(encodedPassword);
 
-        // create email verification code
         player.setEmailVerificationCode(UUID.randomUUID().toString());
 
         final Player createdPlayer = repository.save(player);
 
-        // TODO email needs to be sent via listener
         eventPublisher.publishEvent(new EntityCreatedEvent<Player>(createdPlayer));
 
         return createdPlayer;
@@ -54,7 +53,6 @@ public class PlayerService {
         final Player persistedPlayer = repository.findByCredentialsEmail(email)
                 .orElseThrow(AuthorizationFailureException::new);
 
-        // TODO move to spring security
         if(!persistedPlayer.getId().equals(id)) {
             throw new AuthorizationFailureException();
         }

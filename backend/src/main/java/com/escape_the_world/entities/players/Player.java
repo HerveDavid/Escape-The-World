@@ -1,6 +1,7 @@
 package com.escape_the_world.entities.players;
 
 import javax.persistence.Embedded;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +16,7 @@ import lombok.Setter;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown=true)
+@Entity(name = "Player")
 public class Player {
 
     @Id

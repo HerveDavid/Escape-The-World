@@ -1,4 +1,4 @@
-package com.escape_the_world.services.security;
+package com.escape_the_world.system.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

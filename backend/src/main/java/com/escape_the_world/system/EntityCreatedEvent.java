@@ -1,4 +1,4 @@
-package com.escape_the_world.services;
+package com.escape_the_world.system;
 
 import org.springframework.core.ResolvableType;
 import org.springframework.core.ResolvableTypeProvider;

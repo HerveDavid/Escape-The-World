@@ -1,4 +1,4 @@
-package com.escape_the_world.controllers;
+package com.escape_the_world.controllers.players;
 
 import java.net.URI;
 import java.util.Optional;
@@ -20,12 +20,12 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.escape_the_world.entities.players.Credentials;
 import com.escape_the_world.entities.players.Player;
-import com.escape_the_world.services.security.AuthenticationFailureException;
-import com.escape_the_world.services.security.AuthorizationFailureException;
-import com.escape_the_world.services.security.JwtService;
-import com.escape_the_world.services.security.SecurityContextAccessor;
-import com.escape_the_world.services.security.Token;
 import com.escape_the_world.services.PlayerService;
+import com.escape_the_world.system.security.AuthenticationFailureException;
+import com.escape_the_world.system.security.AuthorizationFailureException;
+import com.escape_the_world.system.security.JwtService;
+import com.escape_the_world.system.security.SecurityContextAccessor;
+import com.escape_the_world.system.security.Token;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,7 +39,7 @@ class PlayerController {
     private PlayerService playerService;
 
     @Autowired
-    private JwtService jwtService;
+    private static JwtService jwtService;
 
     @Autowired
     private SecurityContextAccessor securityContextAccessor;
@@ -91,10 +91,4 @@ class PlayerController {
         }
         throw new AuthenticationFailureException();
     }
-
-
-    //TODO VERIFY EMAIL
-    //TODO RESET PASSWORD (TOKEN + RESET)
-
-    //TODO UPDATE USER
 }
