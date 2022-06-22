@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as Yup from 'yup';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
   Button,
@@ -102,7 +102,7 @@ export function AddRoomDialog(props) {
             autoFocus
             margin="dense"
             id="duration"
-            label="Duration"
+            label="Duration (minute)"
             type="number"
             fullWidth
             variant="outlined"
