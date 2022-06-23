@@ -6,7 +6,7 @@ export const rooms = [
     createdAt: "27/03/2019",
     description:
       "Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.",
-    media: "/static/images/products/product_2.png",
+    media: "/static/images/rooms/example.jpg",
     title: "Dropbox",
     bookings: 594,
     capacity: 10,
@@ -16,7 +16,7 @@ export const rooms = [
     createdAt: "27/03/2019",
     description:
       "Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.",
-    media: "/static/images/products/product_2.png",
+    media: "/static/images/rooms/example.jpg",
     title: "Dropbox",
     bookings: 594,
     capacity: 10,
@@ -26,7 +26,157 @@ export const rooms = [
     createdAt: "27/03/2019",
     description:
       "Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.",
-    media: "/static/images/products/product_2.png",
+    media: "/static/images/rooms/example.jpg",
+    title: "Dropbox",
+    bookings: 594,
+    capacity: 10,
+  },
+  {
+    id: uuid(),
+    createdAt: "27/03/2019",
+    description:
+      "Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.",
+    media: "/static/images/rooms/example.jpg",
+    title: "Dropbox",
+    bookings: 594,
+    capacity: 10,
+  },
+  {
+    id: uuid(),
+    createdAt: "27/03/2019",
+    description:
+      "Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.",
+    media: "/static/images/rooms/example.jpg",
+    title: "Dropbox",
+    bookings: 594,
+    capacity: 10,
+  },
+  {
+    id: uuid(),
+    createdAt: "27/03/2019",
+    description:
+      "Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.",
+    media: "/static/images/rooms/example.jpg",
+    title: "Dropbox",
+    bookings: 594,
+    capacity: 10,
+  },
+  {
+    id: uuid(),
+    createdAt: "27/03/2019",
+    description:
+      "Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.",
+    media: "/static/images/rooms/example.jpg",
+    title: "Dropbox",
+    bookings: 594,
+    capacity: 10,
+  },
+  {
+    id: uuid(),
+    createdAt: "27/03/2019",
+    description:
+      "Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.",
+    media: "/static/images/rooms/example.jpg",
+    title: "Dropbox",
+    bookings: 594,
+    capacity: 10,
+  },
+  {
+    id: uuid(),
+    createdAt: "27/03/2019",
+    description:
+      "Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.",
+    media: "/static/images/rooms/example.jpg",
+    title: "Dropbox",
+    bookings: 594,
+    capacity: 10,
+  },
+  {
+    id: uuid(),
+    createdAt: "27/03/2019",
+    description:
+      "Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.",
+    media: "/static/images/rooms/example.jpg",
+    title: "Dropbox",
+    bookings: 594,
+    capacity: 10,
+  },
+  {
+    id: uuid(),
+    createdAt: "27/03/2019",
+    description:
+      "Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.",
+    media: "/static/images/rooms/example.jpg",
+    title: "Dropbox",
+    bookings: 594,
+    capacity: 10,
+  },
+  {
+    id: uuid(),
+    createdAt: "27/03/2019",
+    description:
+      "Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.",
+    media: "/static/images/rooms/example.jpg",
+    title: "Dropbox",
+    bookings: 594,
+    capacity: 10,
+  },
+  {
+    id: uuid(),
+    createdAt: "27/03/2019",
+    description:
+      "Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.",
+    media: "/static/images/rooms/example.jpg",
+    title: "Dropbox",
+    bookings: 594,
+    capacity: 10,
+  },
+  {
+    id: uuid(),
+    createdAt: "27/03/2019",
+    description:
+      "Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.",
+    media: "/static/images/rooms/example.jpg",
+    title: "Dropbox",
+    bookings: 594,
+    capacity: 10,
+  },
+  {
+    id: uuid(),
+    createdAt: "27/03/2019",
+    description:
+      "Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.",
+    media: "/static/images/rooms/example.jpg",
+    title: "Dropbox",
+    bookings: 594,
+    capacity: 10,
+  },
+  {
+    id: uuid(),
+    createdAt: "27/03/2019",
+    description:
+      "Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.",
+    media: "/static/images/rooms/example.jpg",
+    title: "Dropbox",
+    bookings: 594,
+    capacity: 10,
+  },
+  {
+    id: uuid(),
+    createdAt: "27/03/2019",
+    description:
+      "Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.",
+    media: "/static/images/rooms/example.jpg",
+    title: "Dropbox",
+    bookings: 594,
+    capacity: 10,
+  },
+  {
+    id: uuid(),
+    createdAt: "27/03/2019",
+    description:
+      "Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.",
+    media: "/static/images/rooms/example.jpg",
     title: "Dropbox",
     bookings: 594,
     capacity: 10,
