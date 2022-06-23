@@ -24,7 +24,7 @@ export function RoomCard({ room, ...rest }) {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        height: '100%'
+        
       }}
       {...rest}
     >
