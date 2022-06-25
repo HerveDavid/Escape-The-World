@@ -20,13 +20,16 @@ const useRoomsStore = create((set) => ({
         set((state) => ({ rooms: state.rooms.concat(room) }));
     },
     removeRoom: async (room) => {
-        console.log(room.id)
         await fetch(API_URL + "/rooms/remove/" + room.id, {
             method: 'DELETE',
-            headers: {
+            mode: 'cors',
+            headers: new Headers({
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-            }
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': '*',
+                'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY1NjIwODczOSwiaWF0IjoxNjU2MTkwNzM5fQ.OAnp8Mrd0jmy7udNYbWtxjWDWBmsbWNgiJ3JqUNTDMHk4bsyg03Dg_zddWuIrx83nTBNtoROSxJzD4JY7haTWw',
+        })
         }).then(() => {
             set((state) => ({ rooms: state.rooms.filter((currentRoom) => currentRoom.id !== room.id)}));
         })
