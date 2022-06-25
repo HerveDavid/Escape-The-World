@@ -51,7 +51,6 @@ const Register = () => {
         )
     }),
     onSubmit: (data) => {
-      console.log(data);
       router.push('/');
     }
   });

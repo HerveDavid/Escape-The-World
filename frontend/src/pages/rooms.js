@@ -1,11 +1,17 @@
 import Head from 'next/head';
 import { Box, Container, Grid } from '@mui/material';
-import { RoomListToolBar }  from '../components/room/room-list-toolbar';
+import { RoomListToolBar }  from '../components/room/admin/room-list-toolbar';
 import { DashboardLayout } from '../components/dashboard-layout';
-import { RoomCard } from '../components/room/room-card';
-import { API_URL } from 'src/utils/api-endpoint';
+import { RoomCard } from '../components/room/admin/room-card';
+import useRoomsStore from 'src/hooks/rooms-store';
+import { useEffect } from 'react';
 
-function Rooms({ rooms }) {
+function Rooms() {
+
+  const { rooms, fetch } = useRoomsStore();
+
+  useEffect(fetch, []);
+
   return (
     <>
       <Head>
@@ -37,17 +43,5 @@ function Rooms({ rooms }) {
 }
 
 Rooms.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>;
-
-export async function getStaticProps() {
-  const res = await fetch(API_URL + "/room/all");
-  const rooms = await res.json();
-
-  return {
-    props: {
-      rooms,
-    },
-    revalidate: 1,
-  };
-}
 
 export default Rooms;

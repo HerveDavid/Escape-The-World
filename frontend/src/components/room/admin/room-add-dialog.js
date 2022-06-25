@@ -43,7 +43,7 @@ export function AddRoomDialog(props) {
   };
 
   async function onSubmit(data) {
-    await fetch(API_URL + '/room', {
+    await fetch(API_URL + '/rooms', {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',

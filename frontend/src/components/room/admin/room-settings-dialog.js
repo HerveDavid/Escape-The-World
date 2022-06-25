@@ -11,7 +11,7 @@ import {
   DialogActions,
   FormControl,
 } from "@mui/material";
-import { API_URL } from 'src/utils/api-endpoint';
+import useRoomsStore from 'src/hooks/rooms-store';
 
 const validationSchema = Yup.object().shape({
     title: Yup.string(),
@@ -26,6 +26,7 @@ const validationSchema = Yup.object().shape({
 
 export function SettingsRoomDialog(props) {
   
+  const { updateRoom, removeRoom } = useRoomsStore();
   const { onClose, open, room } = props;
   const {
     register,
@@ -39,25 +40,14 @@ export function SettingsRoomDialog(props) {
     onClose();
   };
 
-  async function onSubmit(data) {
-    await fetch(API_URL + '/room', {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({...data, id: room.id})
-    })
+  function onSubmit(data) {
+    updateRoom({...data, id: room.id});
+    onClose();
   }
 
-  async function handleRemove() {
-    await fetch(API_URL + "/room/remove/" + room.id, {
-      method: 'DELETE',
-      headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-      },
-    });
+  function handleRemove() {
+    removeRoom(room)
+    onClose();
   }
 
   return (

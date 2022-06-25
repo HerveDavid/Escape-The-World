@@ -11,7 +11,7 @@ export function RoomCard({ room }) {
     <>
       <Card>
         <CardActionArea onClick={handleOpen}>
-          <Image src={room.media} alt={"Picture of " + room.title} width={800} height={300} />
+          <Image src="/static/images/rooms/example.jpg" alt={"Picture of " + room.title} width={800} height={300} />
           <CardContent>
             <Typography color="textPrimary" gutterBottom variant="h6">
               {room.title}
