@@ -1,5 +1,5 @@
 import { API_URL } from "src/utils/api-endpoint";
-import  {rooms as roomsMock} from "src/__mocks__/rooms";
+import  {rooms as roomsMock, topRooms, adventureRooms, horrorRooms, moviesRooms} from "src/__mocks__/rooms";
 import create from "zustand";
 
 const useRoomsStore = create((set) => ({
@@ -8,6 +8,20 @@ const useRoomsStore = create((set) => ({
         //const res = await fetch(API_URL + "/rooms");
         //const rooms = await res.json();
         set({ rooms: roomsMock })
+    },
+    fetchWithCategorie: async (categorie) => {
+        switch(categorie) {
+            case "TOP":
+                return topRooms;
+            case "ADVENTURE":
+                return adventureRooms;
+            case "HORROR":
+                return horrorRooms;
+            case "MOVIES":
+                return moviesRooms;
+            default:
+                return [];
+        }
     },
     addRoom: async (room) => {
         await fetch(API_URL + '/rooms', {

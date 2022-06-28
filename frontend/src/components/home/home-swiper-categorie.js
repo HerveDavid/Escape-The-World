@@ -8,13 +8,17 @@ import useRoomsStore from "src/hooks/rooms-store";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export function HomeSwiperCategorie({ categorie }) {
 
-  const {rooms, fetch} = useRoomsStore();
+  const [rooms, setRooms] = useState([]);
+  const {fetchWithCategorie} = useRoomsStore();
 
-  useEffect(fetch, []);
+  useEffect(() => {
+    fetchWithCategorie(categorie)
+      .then(setRooms)
+  }, []);
   
   return (
     <Box sx={{ pt: 3 }}>

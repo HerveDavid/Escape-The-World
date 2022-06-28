@@ -27,9 +27,9 @@ const categories = [
 
 export function HomePopularCategories() {
 
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState("0");
 
-  const handleChange = (value, newValue) => {
+  const handleChange = (_, newValue) => {
     setValue(newValue);
   };
 
@@ -43,20 +43,20 @@ export function HomePopularCategories() {
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <TabList onChange={handleChange}>
               {categories.map((categorie, index) => (
-                <Tab key={categorie.title} label={categorie.label} value={index} />
+                <Tab key={index} label={categorie.label} value={index.toString()} />
               ))}
             </TabList>
           </Box>
-            <TabPanel value={0}>
+            <TabPanel value={"0"}>
               <HomeSwiperCategorie categorie={categories[0].type} />
             </TabPanel>
-            <TabPanel value={1}>
+            <TabPanel value={"1"}>
               <HomeSwiperCategorie categorie={categories[1].type} />
             </TabPanel>
-            <TabPanel value={2}>
+            <TabPanel value={"2"}>
               <HomeSwiperCategorie categorie={categories[2].type} />
             </TabPanel>
-            <TabPanel value={3}>
+            <TabPanel value={"3"}>
               <HomeSwiperCategorie categorie={categories[3].type} />
             </TabPanel>
         </TabContext>
