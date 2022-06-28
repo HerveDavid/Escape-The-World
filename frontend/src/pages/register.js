@@ -80,7 +80,7 @@ const Register = () => {
               component="a"
               startIcon={<ArrowBackIcon fontSize="small" />}
             >
-              Dashboard
+              Back
             </Button>
           </NextLink>
           <form onSubmit={formik.handleSubmit}>

@@ -2,13 +2,14 @@ import NextLink from "next/link";
 import { useRouter } from "next/router";
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { AppBar, Avatar, Badge, Box, IconButton, Toolbar, Tooltip } from '@mui/material';
+import { AppBar, Avatar, Badge, Box, Button, IconButton, Toolbar, Tooltip, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import { Bell as BellIcon } from '../icons/bell';
 import { UserCircle as UserCircleIcon } from '../icons/user-circle';
 import { Users as UsersIcon } from '../icons/users';
 import { useEffect } from 'react';
+import { fontWeight } from "@mui/system";
 
 const items = [
   {
@@ -57,35 +58,27 @@ export const CustomerNavbar = (props) => {
         >
           <Box sx={{ flexGrow: 1 }} />
           {items.map((item, index) => (
-            <Box key={index} sx={{ m: 2 }}>
+            <Box key={index}>
               <NextLink href={item.href} passHref>
-                <Box sx={{ color: "black" }}>{item.title}</Box>
+                <Button variant="text" sx={{ m: 2 }} component="a">
+                  <Typography sx={{ color: "black", fontWeight: 600 }}>{item.title}</Typography>
+                </Button>
               </NextLink>
             </Box>
           ))}
           <Box sx={{ flexGrow: 1 }} />
-          <Tooltip title="Contacts">
-            <IconButton sx={{ ml: 1 }}>
-              <UsersIcon fontSize="small" />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title="Notifications">
-            <IconButton sx={{ ml: 1 }}>
-              <Badge badgeContent={4} color="primary" variant="dot">
-                <BellIcon fontSize="small" />
-              </Badge>
-            </IconButton>
-          </Tooltip>
-          <Avatar
-            sx={{
-              height: 40,
-              width: 40,
-              ml: 1,
-            }}
-            src="/static/images/avatars/avatar_1.png"
-          >
-            <UserCircleIcon fontSize="small" />
-          </Avatar>
+          <NextLink href="/register" passHref>
+            <Button variant="text" sx={{ m: 2 }} component="a">
+              <Typography sx={{ color: "black", fontWeight: 400, fontSize: 15 }}>
+                Register
+              </Typography>
+            </Button>
+          </NextLink>
+          <NextLink href="/login" passHref>
+            <Button variant="outlined" sx={{ m: 2 }} component="a">
+              <Typography sx={{ color: "blue", fontWeight: 400, fontSize: 15 }}>Sign in</Typography>
+            </Button>
+          </NextLink>
         </Toolbar>
       </CustomerNavbarRoot>
     </>
