@@ -1,12 +1,13 @@
 import { API_URL } from "src/utils/api-endpoint";
+import  {rooms as roomsMock} from "src/__mocks__/rooms";
 import create from "zustand";
 
 const useRoomsStore = create((set) => ({
     rooms: [],
     fetch: async () => {
-        const res = await fetch(API_URL + "/rooms");
-        const rooms = await res.json();
-        set({ rooms: rooms })
+        //const res = await fetch(API_URL + "/rooms");
+        //const rooms = await res.json();
+        set({ rooms: roomsMock })
     },
     addRoom: async (room) => {
         await fetch(API_URL + '/rooms', {
