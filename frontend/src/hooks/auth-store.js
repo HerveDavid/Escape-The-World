@@ -13,7 +13,7 @@ const useAuthStore = create((set) => ({
             return;
         }
 
-        throw new Error("No found");
+        throw new Error("No found lkjflkj");
     }
 }))
 

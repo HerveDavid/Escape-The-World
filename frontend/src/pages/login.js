@@ -14,17 +14,15 @@ const Login = () => {
   const router = useRouter();
   const formik = useFormik({
     initialValues: {
-      email: 'demo@devias.io',
+      username: 'Username',
       password: 'Password123'
     },
     validationSchema: Yup.object({
-      email: Yup
+      username: Yup
         .string()
-        .email(
-          'Must be a valid email')
         .max(255)
         .required(
-          'Email is required'),
+          'Username is required'),
       password: Yup
         .string()
         .max(255)
@@ -32,11 +30,16 @@ const Login = () => {
           'Password is required')
     }),
     onSubmit: () => {
-      authenticate({
-        email: formik.values.email,
-        password: formik.values.password,
-      })
-      // router.push('/');
+      try {
+        authenticate({
+          username: formik.values.username,
+          password: formik.values.password,
+        })
+      } catch (error) {
+        console.error(error)
+      } finally {
+        router.push('/');
+      }
     }
   });
 
@@ -130,20 +133,19 @@ const Login = () => {
                 color="textSecondary"
                 variant="body1"
               >
-                or login with email address
+                or login with username
               </Typography>
             </Box>
             <TextField
-              error={Boolean(formik.touched.email && formik.errors.email)}
+              error={Boolean(formik.touched.username && formik.errors.username)}
               fullWidth
-              helperText={formik.touched.email && formik.errors.email}
-              label="Email Address"
+              helperText={formik.touched.username && formik.errors.username}
+              label="Username"
               margin="normal"
-              name="email"
+              name="username"
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              type="email"
-              value={formik.values.email}
+              value={formik.values.username}
               variant="outlined"
             />
             <TextField
