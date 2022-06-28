@@ -5,7 +5,7 @@ import { CustomerNavbar } from './customer-navbar';
 
 const CustomerLayoutRoot = styled('div')(({ theme }) => ({
   display: 'flex',
-  flex: '1 1 auto',
+  flex: '1',
   maxWidth: '100%',
   paddingTop: 54,
 }));
