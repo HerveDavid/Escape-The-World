@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import Image from "next/image";
-import { Card, CardActionArea, CardContent, CardActions, Button, Typography } from "@mui/material";
+import { Card, CardActionArea, CardContent, CardActions, Button, Typography, Box, Rating } from "@mui/material";
 import { BookRoomDialog } from "src/components/room/client/room-book-dialog";
 import { useClickModal } from "src/hooks/use-click-modal";
 
@@ -9,9 +9,14 @@ export function RoomCard({ room }) {
 
   return (
     <>
-      <Card>
+      <Card sx={{mb: 5}}>
         <CardActionArea onClick={handleOpen}>
-          <Image src="/static/images/rooms/example.jpg" alt={"Picture of " + room.title} width={800} height={300} />
+          <Image
+            src="/static/images/rooms/example.jpg"
+            alt={"Picture of " + room.title}
+            width={800}
+            height={300}
+          />
           <CardContent>
             <Typography color="textPrimary" gutterBottom variant="h6">
               {room.title}
@@ -22,6 +27,8 @@ export function RoomCard({ room }) {
           </CardContent>
           <CardActions>
             <Button>See more</Button>
+            <Box sx={{ flexGrow: 1 }}></Box>
+            <Rating defaultValue={room.rating} size="small" readOnly />
           </CardActions>
         </CardActionArea>
       </Card>
