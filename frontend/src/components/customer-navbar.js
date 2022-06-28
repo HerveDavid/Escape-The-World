@@ -18,7 +18,7 @@ const items = [
   },
   {
     href: '/tours',
-    title: 'Tours',
+    title: 'Rooms',
   },
   {
     href: '/news',
@@ -70,13 +70,13 @@ export const CustomerNavbar = (props) => {
           <NextLink href="/register" passHref>
             <Button variant="text" sx={{ m: 2 }} component="a">
               <Typography sx={{ color: "black", fontWeight: 400, fontSize: 15 }}>
-                Register
+                Sign Up
               </Typography>
             </Button>
           </NextLink>
           <NextLink href="/login" passHref>
             <Button variant="outlined" sx={{ m: 2 }} component="a">
-              <Typography sx={{ color: "blue", fontWeight: 400, fontSize: 15 }}>Sign in</Typography>
+              <Typography sx={{ color: "blue", fontWeight: 400, fontSize: 15 }}>Sign In</Typography>
             </Button>
           </NextLink>
         </Toolbar>

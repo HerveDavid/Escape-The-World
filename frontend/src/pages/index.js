@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { Box, Container, Grid, Typography } from "@mui/material";
-import { Pagination, Navigation } from "swiper";
+import { useEffect, useState } from "react";
+import { Box, Container, Typography } from "@mui/material";
+import { Pagination, Mousewheel } from "swiper";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { RoomCard } from "src/components/room/client/room-card";
 import useRoomsStore from "src/hooks/rooms-store";
@@ -25,7 +25,9 @@ const Index = () => {
           py: 8,
         }}
       >
-        Popular Categories
+        <Typography variant="h2" sx={{ ml: 3, mb: 5 }}>
+          Popular Categories
+        </Typography>
         <Container maxWidth={false}>
           <Typography sx={{ m: 1 }} variant="h6">
             Top Rooms
@@ -33,15 +35,16 @@ const Index = () => {
           <Box sx={{ pt: 3 }}>
             <Swiper
               className="mySwiper"
-              spaceBetween={40}
-              slidesPerView={4}
+              spaceBetween={35}
+              slidesPerView={3}
               loop={true}
+              direction={"horizontal"}
               pagination={{
                 clickable: true,
                 dynamicBullets: true,
               }}
-              navigation={true}
-              modules={[Pagination, Navigation]}
+              mousewheel={true}
+              modules={[Mousewheel, Pagination]}
             >
               {rooms &&
                 rooms.map((room, index) => (
