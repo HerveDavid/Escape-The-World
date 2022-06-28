@@ -1,8 +1,9 @@
 package com.escape_the_world.controllers;
 
 import com.escape_the_world.configurations.PasswordEncoderConfig;
-import com.escape_the_world.dto.reponses.JwtResponse;
-import com.escape_the_world.dto.requests.JwtRequest;
+import com.escape_the_world.dto.reponses.LoginResponse;
+import com.escape_the_world.dto.requests.LoginRequest;
+import com.escape_the_world.entities.User;
 import com.escape_the_world.security.JwtTokenUtil;
 import com.escape_the_world.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,16 +32,18 @@ public class AuthenticationController {
     private UserService userService;
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody LoginRequest authenticationRequest) throws Exception {
 
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
         final UserDetails userDetails = userService
                 .loadUserByUsername(authenticationRequest.getUsername());
 
+        final User user = userService.getByUsername(userDetails.getUsername());
+
         final String token = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new JwtResponse(token));
+        return ResponseEntity.ok(new LoginResponse(token, user));
     }
 
     private void authenticate(String username, String password) throws Exception {
