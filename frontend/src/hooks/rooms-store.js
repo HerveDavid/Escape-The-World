@@ -1,5 +1,6 @@
+import { roomsCategorie } from "src/hooks/rooms-categorie";
 import { API_URL } from "src/utils/api-endpoint";
-import  {rooms as roomsMock, topRooms, adventureRooms, horrorRooms, moviesRooms} from "src/__mocks__/rooms";
+import  {rooms as roomsMock, topRooms, adventureRooms, horrorRooms, moviesRooms, rooms} from "src/__mocks__/rooms";
 import create from "zustand";
 
 const useRoomsStore = create((set) => ({
@@ -11,13 +12,13 @@ const useRoomsStore = create((set) => ({
     },
     fetchWithCategorie: async (categorie) => {
         switch(categorie) {
-            case "TOP":
+            case roomsCategorie.TOP:
                 return topRooms;
-            case "ADVENTURE":
+            case roomsCategorie.ADVENTURE:
                 return adventureRooms;
-            case "HORROR":
+            case roomsCategorie.HORROR:
                 return horrorRooms;
-            case "MOVIES":
+            case roomsCategorie.MOVIES:
                 return moviesRooms;
             default:
                 return [];

@@ -7,8 +7,10 @@ import { Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Facebook as FacebookIcon } from '../icons/facebook';
 import { Google as GoogleIcon } from '../icons/google';
+import useAuthStore from "src/hooks/auth-store";
 
 const Login = () => {
+  const { authenticate } = useAuthStore();
   const router = useRouter();
   const formik = useFormik({
     initialValues: {
@@ -30,7 +32,11 @@ const Login = () => {
           'Password is required')
     }),
     onSubmit: () => {
-      router.push('/');
+      authenticate({
+        email: formik.values.email,
+        password: formik.values.password,
+      })
+      // router.push('/');
     }
   });
 

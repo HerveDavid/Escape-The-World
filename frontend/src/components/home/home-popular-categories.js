@@ -5,23 +5,24 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { HomeSwiperCategorie } from "src/components/home/home-swiper-categorie";
+import { roomsCategorie } from "src/hooks/rooms-categorie";
 
 const categories = [
   {
     label: "Top rooms",
-    type: "TOP",
+    type: roomsCategorie.TOP,
   },
   {
     label: "Adventure",
-    type: "ADVENTURE",
+    type: roomsCategorie.ADVENTURE,
   },
   {
     label: "Horror",
-    type: "HORROR",
+    type: roomsCategorie.HORROR,
   },
   {
     label: "Movies",
-    type: "MOVIES",
+    type: roomsCategorie.MOVIES,
   }
 ]
 

@@ -186,7 +186,7 @@ export const topRooms = [
     description:
       "dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.",
     media: "/static/images/rooms/example.jpg",
-    title: "La meilleur de tous",
+    title: "La meilleure de tous",
     bookings: 594,
     capacity: 10,
     rating: 5,
@@ -197,7 +197,7 @@ export const topRooms = [
     description:
       "dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.",
     media: "/static/images/rooms/example.jpg",
-    title: "La meilleur de tous",
+    title: "La meilleure de tous",
     bookings: 594,
     capacity: 10,
     rating: 5,
@@ -208,7 +208,7 @@ export const topRooms = [
     description:
       "dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.",
     media: "/static/images/rooms/example.jpg",
-    title: "La meilleur de tous",
+    title: "La meilleure de tous",
     bookings: 594,
     capacity: 10,
     rating: 5,
@@ -219,7 +219,7 @@ export const topRooms = [
     description:
       "dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.",
     media: "/static/images/rooms/example.jpg",
-    title: "La meilleur de tous",
+    title: "La meilleure de tous",
     bookings: 594,
     capacity: 10,
     rating: 5,
