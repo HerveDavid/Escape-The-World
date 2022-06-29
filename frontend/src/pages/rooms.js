@@ -29,8 +29,8 @@ function Rooms() {
           <Box sx={{ pt: 3 }}>
             <Grid container spacing={3}>
               {rooms &&
-                rooms.map((room) => (
-                  <Grid item key={room.id} lg={4} md={6} xs={12}>
+                rooms.map((room, index) => (
+                  <Grid item key={index} lg={4} md={6} xs={12}>
                     <RoomCard room={room} />
                   </Grid>
                 ))}

@@ -10,7 +10,7 @@ import { Google as GoogleIcon } from '../icons/google';
 import useAuthStore from "src/hooks/auth-store";
 
 const Login = () => {
-  const { authenticate } = useAuthStore();
+  const { user, authenticate } = useAuthStore();
   const router = useRouter();
   const formik = useFormik({
     initialValues: {
@@ -35,7 +35,12 @@ const Login = () => {
           username: formik.values.username,
           password: formik.values.password,
         })
-        router.push("/");
+        if (user.role == "ADMIN") {
+          router.push("/dashboard");
+        } else {
+          router.push("/")
+        }
+
       } catch (error) {
         console.error(error)
       }

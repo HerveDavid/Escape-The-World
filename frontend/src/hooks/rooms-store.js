@@ -2,12 +2,14 @@ import { roomsCategorie } from "src/hooks/rooms-categorie";
 import { API_URL } from "src/utils/api-endpoint";
 import  {rooms as roomsMock, topRooms, adventureRooms, horrorRooms, moviesRooms, rooms} from "src/__mocks__/rooms";
 import create from "zustand";
+import useAuthStore from "./auth-store";
 
 const useRoomsStore = create((set) => ({
     rooms: [],
     fetch: async () => {
         const res = await fetch(API_URL + "/rooms");
         const rooms = await res.json();
+        set((state) => ({ rooms }))
     },
     fetchWithCategorie: async (categorie) => {
         switch(categorie) {
@@ -23,22 +25,26 @@ const useRoomsStore = create((set) => ({
                 return [];
         }
     },
-    addRoom: async (room) => {
-        await fetch(API_URL + '/rooms', {
-            method: 'PUT',
+    addRoom: async (room, token) => {
+        await fetch(API_URL + '/rooms/add', {
+            method: 'POST',
+            mode:'no-cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': '*',
+                'Authorization': 'Bearer ' + token,
             },
-            body: room,
+            body: JSON.stringify(room),
         })
         set((state) => ({ rooms: state.rooms.concat(room) }));
     },
     removeRoom: async (room) => {
         await fetch(API_URL + "/rooms/remove/" + room.id, {
             method: 'DELETE',
-            mode: 'cors',
-            headers: new Headers({
+            mode: 'no-cors',
+            header: new Headers({
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',

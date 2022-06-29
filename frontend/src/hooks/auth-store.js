@@ -1,3 +1,4 @@
+import { CallEnd } from "@mui/icons-material";
 import { API_URL } from "src/utils/api-endpoint";
 import create from "zustand";
 
@@ -12,15 +13,17 @@ const useAuthStore = create((set) => ({
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({username, password}),
-        });
+        })
 
-        if(res.status !== 200) {
+        switch(res.status) {
+          case 401:
+            throw new Error("Password not matched");
+          case 404:
             throw new Error(username + " not found");
+          case 200:
+            const user = await res.json();
+            set((state) => ({ ...user }));
         }
-        console.log(res)
-
-        // const user = await res.json();
-        // set((state) => ({ ...user }));
     }
 }))
 

@@ -55,7 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
-                .authorizeRequests().antMatchers("/authenticate", "/api", "/api/**", "/swagger-ui/**", "/users/register", "/rooms", "rooms/remove").permitAll()
+                .authorizeRequests().antMatchers("/authenticate", "/api", "/api/**", "/swagger-ui/**", "/users/register", "/rooms").permitAll()
+                .antMatchers("/rooms/add").hasRole("ADMIN")
                 .anyRequest().authenticated().and().exceptionHandling()
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
