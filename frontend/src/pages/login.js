@@ -35,6 +35,7 @@ const Login = () => {
           username: formik.values.username,
           password: formik.values.password,
         })
+        router.push("/");
       } catch (error) {
         console.error(error)
       }
