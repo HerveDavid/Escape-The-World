@@ -6,9 +6,8 @@ import create from "zustand";
 const useRoomsStore = create((set) => ({
     rooms: [],
     fetch: async () => {
-        //const res = await fetch(API_URL + "/rooms");
-        //const rooms = await res.json();
-        set({ rooms: roomsMock })
+        const res = await fetch(API_URL + "/rooms");
+        const rooms = await res.json();
     },
     fetchWithCategorie: async (categorie) => {
         switch(categorie) {

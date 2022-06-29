@@ -4,7 +4,7 @@ import com.escape_the_world.dto.reponses.RegisterResponse;
 import com.escape_the_world.dto.requests.PaginationRequest;
 import com.escape_the_world.dto.requests.RegisterRequest;
 import com.escape_the_world.entities.User;
-import com.escape_the_world.exceptions.RessourceAlreadyExistException;
+import com.escape_the_world.exceptions.ResourceAlreadyExistException;
 import com.escape_the_world.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,7 +35,7 @@ public class UserController {
 
 
     @RequestMapping(path = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> register(@RequestBody @Valid RegisterRequest request) throws RessourceAlreadyExistException {
+    public ResponseEntity<?> register(@RequestBody @Valid RegisterRequest request) throws ResourceAlreadyExistException {
         User user = userService.register(request);
         return ResponseEntity.ok(new RegisterResponse(
                 user.getUsername(),
