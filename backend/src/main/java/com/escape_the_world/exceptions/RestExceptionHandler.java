@@ -43,5 +43,11 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(e.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler({ PasswordNotMatchException.class })
+    public ResponseEntity<Object> handlePasswordNotMatchException(PasswordNotMatchException e) {
+        return new ResponseEntity<>(e.getMessage(), new HttpHeaders(), HttpStatus.FORBIDDEN);
+    }
+
+
 
 }

@@ -4,7 +4,7 @@ import com.escape_the_world.configurations.PasswordEncoderConfig;
 import com.escape_the_world.dto.reponses.LoginResponse;
 import com.escape_the_world.dto.requests.LoginRequest;
 import com.escape_the_world.entities.User;
-import com.escape_the_world.exceptions.UsernameNotFoundException;
+import com.escape_the_world.exceptions.PasswordNotMatchException;
 import com.escape_the_world.security.JwtTokenUtil;
 import com.escape_the_world.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,14 +33,14 @@ public class AuthenticationController {
     private UserService userService;
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody @Valid LoginRequest authenticationRequest) throws UsernameNotFoundException {
-
-        // Launch authentication
-        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody @Valid LoginRequest authenticationRequest) throws PasswordNotMatchException {
 
         // Find user
         final UserDetails userDetails = userService
                 .loadUserByUsername(authenticationRequest.getUsername());
+
+        // Launch authentication
+        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
         final User user = userService.getByUsername(userDetails.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
@@ -48,7 +48,11 @@ public class AuthenticationController {
         return ResponseEntity.ok(new LoginResponse(token, user));
     }
 
-    private void authenticate(String username, String password) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+    private void authenticate(String username, String password) throws PasswordNotMatchException {
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+        } catch (Exception e) {
+            throw new PasswordNotMatchException();
+        }
     }
 }
