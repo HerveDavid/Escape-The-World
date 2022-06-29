@@ -9,7 +9,7 @@ export function RoomCard({ room }) {
 
   return (
     <>
-      <Card sx={{mb: 5, display: 'block', width: '100%', height: '100%', objectFit: 'cover'}}>
+      <Card sx={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover'}}>
         <CardActionArea onClick={handleOpen}>
           <Image
             src="/static/images/rooms/example.jpg"

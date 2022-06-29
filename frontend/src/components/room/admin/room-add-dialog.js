@@ -11,6 +11,8 @@ import {
   DialogContentText,
   DialogActions,
   FormControl,
+  Rating,
+  Typography,
 } from "@mui/material";
 import { API_URL } from 'src/utils/api-endpoint';
 
@@ -60,18 +62,18 @@ export function AddRoomDialog(props) {
         <DialogContentText>
           To add a new room, please enter a title, description and capacity.
         </DialogContentText>
-        <FormControl>
+        <FormControl fullWidth>
           <TextField
-            autoFocus
-            margin="dense"
-            id="title"
-            label="Room title"
-            type="text"
+            error={errors.title ? true : false}
             fullWidth
+            label="Room title"
+            margin="normal"
+            type="text"
+            name="title"
+            autoFocus
             variant="outlined"
             required
             {...register('title')}
-            error={errors.title ? true : false}
             sx={{ marginTop: 5 }}
           />
           <TextField
@@ -82,6 +84,7 @@ export function AddRoomDialog(props) {
             fullWidth
             variant="outlined"
             multiline
+            rows={4}
             required
             {...register('description')}
             error={errors.description ? true : false}

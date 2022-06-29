@@ -22,7 +22,9 @@ export const CustomerLayout = (props) => {
             display: 'flex',
             flex: 1,
             flexDirection: 'column',
-            width: '100%'
+            width: '100%',
+            flexGrow: 1,
+            py: 8,
           }}
         >
           {children}

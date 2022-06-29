@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Avatar, Box, Card, CardContent, Divider, Grid, Typography, CardActionArea } from '@mui/material';
+import { Avatar, Box, Card, CardContent, Divider, Grid, Typography, CardActionArea, Rating } from '@mui/material';
 import { Clock as ClockIcon } from '../../../icons/clock';
 import PeopleIcon from '@mui/icons-material/People';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
@@ -123,6 +123,15 @@ export function RoomCard({ room, ...rest }) {
                 {' '}
                 Bookings
               </Typography>
+            </Grid>
+            <Grid
+              item
+              sx={{
+                alignItems: 'center',
+                display: 'flex'
+              }}
+            >
+              <Rating readOnly value={3}></Rating>
             </Grid>
           </Grid>
         </Box>

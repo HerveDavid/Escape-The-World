@@ -6,13 +6,7 @@ const Index = () => {
 
   return (
     <>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          py: 8,
-        }}
-      >
+      <Box>
         <HomePopularCategories />
       </Box>
     </>

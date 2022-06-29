@@ -57,7 +57,7 @@ export function SettingsRoomDialog(props) {
         <DialogContentText>
           Modification of room
         </DialogContentText>
-        <FormControl>
+        <FormControl fullWidth>
           <TextField
             autoFocus
             margin="dense"
@@ -80,6 +80,7 @@ export function SettingsRoomDialog(props) {
             fullWidth
             variant="outlined"
             multiline
+            rows={4}
             {...register('description')}
             error={errors.description ? true : false}
           />
