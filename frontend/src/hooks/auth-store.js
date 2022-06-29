@@ -1,19 +1,26 @@
+import { API_URL } from "src/utils/api-endpoint";
 import create from "zustand";
 
 const useAuthStore = create((set) => ({
     jwtToken: "",
-    typeCustomer: "",
+    user: {},
     authenticate: async ({username, password}) => {
-        if("admin" === username && "admin" === password) {
-            set((state) => ({ jwtToken: "jklfjklgjlkqg", typeCustomer: "ADMIN"}));
-            return;
-        }
-        else if ("user" === username && "user" === password) {
-            set((state) => ({ jwtToken: "fkjfk", typeCustomer: "CUSTOMER"}));
-            return;
-        }
+        const res = await fetch(API_URL + "/authenticate", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({username, password}),
+        });
 
-        throw new Error("No found lkjflkj");
+        if(res.status !== 200) {
+            throw new Error(username + " not found");
+        }
+        console.log(res)
+
+        // const user = await res.json();
+        // set((state) => ({ ...user }));
     }
 }))
 

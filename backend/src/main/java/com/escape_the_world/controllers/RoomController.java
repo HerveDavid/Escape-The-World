@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/room")
+@RequestMapping("/rooms")
 public class RoomController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class RoomController {
         return roomService.createOrUpdate(room);
     }
 
-    @RequestMapping(path = "/all", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public List<Room> getAll() {
         return roomService.getAll();
     }

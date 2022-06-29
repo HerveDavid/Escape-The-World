@@ -37,8 +37,6 @@ const Login = () => {
         })
       } catch (error) {
         console.error(error)
-      } finally {
-        router.push('/');
       }
     }
   });
