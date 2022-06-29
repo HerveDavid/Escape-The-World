@@ -29,9 +29,9 @@ const Login = () => {
         .required(
           'Password is required')
     }),
-    onSubmit: () => {
+    onSubmit: async () => {
       try {
-        authenticate({
+        await authenticate({
           username: formik.values.username,
           password: formik.values.password,
         })
