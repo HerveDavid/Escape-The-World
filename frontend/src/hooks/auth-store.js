@@ -1,4 +1,3 @@
-import { CallEnd } from "@mui/icons-material";
 import { API_URL } from "src/utils/api-endpoint";
 import create from "zustand";
 
@@ -22,7 +21,7 @@ const useAuthStore = create((set) => ({
             throw new Error(username + " not found");
           case 200:
             const user = await res.json();
-            set((state) => ({ ...user }));
+            set((_) => ({ ...user }));
         }
     }
 }))

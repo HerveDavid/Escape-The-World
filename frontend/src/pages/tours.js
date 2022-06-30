@@ -3,6 +3,7 @@ import Head from "next/head";
 import { useEffect } from "react";
 import { CustomerLayout } from "src/components/customer-layout";
 import { RoomCard } from "src/components/room/client/room-card";
+import { RoomListToolBar } from "src/components/room/client/room-list-toolbar";
 import useRoomsStore from "src/hooks/rooms-store";
 
 const Tours = () => {
@@ -18,6 +19,7 @@ const Tours = () => {
       </Head>
       <Box>
         <Container maxWidth={false}>
+        <RoomListToolBar />
           <Box sx={{ pt: 3}}>
             <Grid container spacing={3}>
               {rooms && rooms.map((room, index) => (
