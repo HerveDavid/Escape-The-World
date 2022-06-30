@@ -11,40 +11,41 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 
 export function RoomListToolBar() {
 
-    const [categorie, setCategorie] = useState('');
+    const [categorie, setCategorie] = useState('all');
     const handleCategorie = (event) => {
         setCategorie(event.target.value);
     }
 
-    const [dateStart, setDateStart] = useState(Date.now());
+    const [dateStart, setDateStart] = useState(new Date());
     const handleDateStart = (newValue) => {
         setDateStart(newValue);
-        setDateEnd(newValue);
     }
 
-    const [dateEnd, setDateEnd] = useState(Date.now());
-    const handleDateEnd = (newValue) => setDateEnd(newValue);
+    const [timeStart, setTimeStart] = useState(new Date());
+    const handleTimeStart = (newValue) => {
+        setTimeStart(newValue);
+    }
+
+    const handleSearch = () => {
+        console.log(categorie)
+        console.log(dateStart)
+        console.log(timeStart)
+
+    }
 
     return (
-        <Stack direction="row" spacing={2} justifyContent="center" >
+        <Stack direction="row" spacing={5} justifyContent="center" >
              <DesktopDatePicker
-                label="Check in"
+                label="Date"
                 inputFormat="MM/dd/yyyy"
                 value={dateStart}
                 onChange={handleDateStart}
-                renderInput={(params) => <TextField sx={{ width: 170 }} {...params} />}
-            />
-             <DesktopDatePicker
-                label="Check out"
-                inputFormat="MM/dd/yyyy"
-                value={dateEnd}
-                onChange={handleDateEnd}
                 renderInput={(params) => <TextField sx={{ width: 170 }} {...params} />}
             />
             <TimePicker
                 label="Start time"
-                value={dateStart}
-                onChange={handleDateStart}
+                value={timeStart}
+                onChange={handleTimeStart}
                 renderInput={(params) => <TextField sx={{ width: 170 }} {...params} />}
             />
             <FormControl sx={{ minWidth: 120 }}>
@@ -53,18 +54,18 @@ export function RoomListToolBar() {
                     labelId="categorie-label"
                     id="demo-simple-select-disabled"
                     value={categorie}
-                    label="Age"
+                    label="Categorie"
                     onChange={handleCategorie}
                 >
                     <MenuItem value={"all"}>
                     All
                     </MenuItem>
-                    <MenuItem value={"movie"}>Movie</MenuItem>
+                    <MenuItem value={"movies"}>Movies</MenuItem>
                     <MenuItem value={"horror"}>Horror</MenuItem>
                     <MenuItem value={"adventure"}>Adventure</MenuItem>
                 </Select>
             </FormControl>
-            <Button variant="contained" color="success" >Search</Button>
+            <Button variant="contained" color="success" onClick={handleSearch} >Search</Button>
         </Stack>
     );
 

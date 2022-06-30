@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Box, Container, Grid } from '@mui/material';
+import { Box, Container, Grid, Typography } from '@mui/material';
 import { RoomListToolBar }  from '../components/room/admin/room-list-toolbar';
 import { DashboardLayout } from '../components/dashboard-layout';
 import { RoomCard } from '../components/room/admin/room-card';

@@ -1,4 +1,4 @@
-import { Box, Container, Grid } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
 import Head from "next/head";
 import { useEffect } from "react";
 import { CustomerLayout } from "src/components/customer-layout";
