@@ -6,18 +6,20 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { getFormatDate } from 'src/utils/get-format-date';
 import { SettingsRoomDialog } from 'src/components/room/admin/room-settings-dialog';
 import React from 'react';
+import { useClickModal } from "src/hooks/use-click-modal";
 
 export function RoomCard({ room, ...rest }) {
 
-  const [open, setOpen] = React.useState(false);
+  const [isOpen, handleOpen, handleClose] = useClickModal();
+  // const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
 
   return (
     <>
@@ -29,7 +31,7 @@ export function RoomCard({ room, ...rest }) {
         }}
         {...rest}
       >
-        <CardActionArea onClick={handleClickOpen}>
+        <CardActionArea onClick={handleOpen}>
           <CardContent>
             <Box
               sx={{
@@ -136,7 +138,7 @@ export function RoomCard({ room, ...rest }) {
           </Grid>
         </Box>
       </Card>
-      <SettingsRoomDialog open={open} onClose={handleClose} room={room} />
+      <SettingsRoomDialog open={isOpen} onClose={handleClose} room={room} />
     </>
   );
 }

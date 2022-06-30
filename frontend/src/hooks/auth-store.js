@@ -4,7 +4,7 @@ import create from "zustand";
 
 const useAuthStore = create((set) => ({
     jwtToken: "",
-    user: {},
+    user: { },
     authenticate: async ({username, password}) => {
         const res = await fetch(API_URL + "/authenticate", {
             method: 'POST',

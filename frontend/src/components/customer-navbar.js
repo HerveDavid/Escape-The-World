@@ -17,7 +17,7 @@ const items = [
     title: 'Home',
   },
   {
-    href: '/tours',
+    href: '/rooms',
     title: 'Rooms',
   },
   {
