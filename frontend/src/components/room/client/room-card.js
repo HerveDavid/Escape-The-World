@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 import Image from "next/image";
-import { Card, CardActionArea, CardContent, CardActions, Button, Typography, Box, Rating } from "@mui/material";
+import { Card, CardActionArea, CardContent, CardActions, Button, Typography, Box, Rating, Grid, Item } from "@mui/material";
 import { BookRoomDialog } from "src/components/room/client/room-book-dialog";
 import { useClickModal } from "src/hooks/use-click-modal";
+
 
 export function RoomCard({ room }) {
   const [isOpen, handleOpen, handleClose] = useClickModal();
