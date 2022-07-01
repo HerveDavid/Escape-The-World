@@ -10,7 +10,7 @@ import { Google as GoogleIcon } from '../icons/google';
 import useAuthStore from "src/hooks/auth-store";
 
 const Login = () => {
-  const { user, authenticate } = useAuthStore();
+  const authenticate = useAuthStore(state => state.authenticate);
   const router = useRouter();
   const formik = useFormik({
     initialValues: {

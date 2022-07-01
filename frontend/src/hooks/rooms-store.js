@@ -7,9 +7,9 @@ import useAuthStore from "./auth-store";
 const useRoomsStore = create((set) => ({
     rooms: [],
     fetch: async () => {
-        //const res = await fetch(API_URL + "/rooms");
-        //const rooms = await res.json();
-        set((state) => ({ rooms: roomsMock }))
+        const res = await fetch(API_URL + "/rooms");
+        const rooms = await res.json();
+        set((state) => ({ rooms }))
     },
     fetchWithCategorie: async (categorie) => {
         switch(categorie) {

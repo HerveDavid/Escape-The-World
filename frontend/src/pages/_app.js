@@ -24,7 +24,7 @@ const App = (props) => {
   let getLayout = Component.getLayout ?? ((page) => page);
   let ComponentToRender = Component;
   const router = useRouter();
-  const { user } = useAuthStore();
+  const user = useAuthStore(state => state.user);
 
   // Forbidden some path
   if (router.pathname.startsWith("/dashboard") && user?.role != "ADMIN") {
