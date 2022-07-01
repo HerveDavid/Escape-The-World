@@ -11,6 +11,8 @@ import useAuthStore from 'src/hooks/auth-store';
 import NotFound from 'src/pages/404';
 import Tours from 'src/pages/tours';
 import { CustomerLayout } from 'src/components/customer-layout';
+import Dashboard from './dashboard';
+import { DashboardLayout } from 'src/components/dashboard-layout';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -38,6 +40,11 @@ const App = (props) => {
   if (router.pathname.startsWith("/rooms") && user?.role != "ADMIN") {
     ComponentToRender = Tours;
     getLayout = ((page) => <CustomerLayout>{page}</CustomerLayout>)
+  }
+
+  if (router.pathname.endsWith("/") && user?.role == "ADMIN") {
+    ComponentToRender = Dashboard;
+    getLayout = ((page) => <DashboardLayout>{page}</DashboardLayout>)
   }
 
   return (

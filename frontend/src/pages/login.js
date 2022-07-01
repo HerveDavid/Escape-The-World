@@ -35,11 +35,8 @@ const Login = () => {
           username: formik.values.username,
           password: formik.values.password,
         })
-        if (user.role == "ADMIN") {
-          router.push("/dashboard");
-        } else {
-          router.push("/")
-        }
+
+        router.push("/");
 
       } catch (error) {
         console.error(error)
