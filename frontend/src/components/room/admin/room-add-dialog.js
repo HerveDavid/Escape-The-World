@@ -14,9 +14,7 @@ import {
   Rating,
   Typography,
 } from "@mui/material";
-import { API_URL } from 'src/utils/api-endpoint';
 import useRoomsStore from 'src/hooks/rooms-store';
-import useAuthStore from 'src/hooks/auth-store';
 
 const validationSchema = Yup.object().shape({
     title: Yup.string()
@@ -33,7 +31,6 @@ const validationSchema = Yup.object().shape({
 });
 
 export function AddRoomDialog(props) {
-  const { jwtToken } = useAuthStore();
   const { addRoom } = useRoomsStore();
   const { onClose, open } = props;
   const {
@@ -49,7 +46,7 @@ export function AddRoomDialog(props) {
   };
 
   function onSubmit(data) {
-    addRoom(data, jwtToken);
+    addRoom(data);
     onClose();
   }
 

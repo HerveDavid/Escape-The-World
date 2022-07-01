@@ -6,12 +6,18 @@ import  {rooms as roomsMock, topRooms, adventureRooms, horrorRooms, moviesRooms,
 import create from "zustand";
 import useAuthStore from "./auth-store";
 
+const jwtToken = useAuthStore.getState().jwtToken;
+
 const _http = axios.create({
     baseURL: API_URL,
     headers: {
         'content-type': 'application/json',
-        'accept': 'application/json',
-        'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY1NjIwODczOSwiaWF0IjoxNjU2MTkwNzM5fQ.OAnp8Mrd0jmy7udNYbWtxjWDWBmsbWNgiJ3JqUNTDMHk4bsyg03Dg_zddWuIrx83nTBNtoROSxJzD4JY7haTWw',
+        "Access-Control-Allow-Origin": "*",
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': '*',
+        'Authorization': `Bearer ${jwtToken}`,
     },
     credentials: true,
 })
@@ -39,19 +45,9 @@ const useRoomsStore = create((set) => ({
         }
     },
     addRoom: async (room, token) => {
-        await fetch(API_URL + '/rooms/add', {
-            method: 'POST',
-            mode:'no-cors',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': '*',
-                'Authorization': 'Bearer ' + token,
-            },
-            body: JSON.stringify(room),
-        })
-        set((state) => ({ rooms: state.rooms.concat(room) }));
+        await _http.post("/rooms/add", JSON.stringify(room))
+            .then(() => {set((state) => ({ rooms: state.rooms.concat(room)}))})
+            .catch(console.err)
     },
     removeRoom: async (room) => {
         await fetch(API_URL + "/rooms/remove/" + room.id, {
