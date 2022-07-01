@@ -1,15 +1,28 @@
+import axios from "axios";
+import { set } from "nprogress";
 import { roomsCategorie } from "src/hooks/rooms-categorie";
 import { API_URL } from "src/utils/api-endpoint";
 import  {rooms as roomsMock, topRooms, adventureRooms, horrorRooms, moviesRooms, rooms} from "src/__mocks__/rooms";
 import create from "zustand";
 import useAuthStore from "./auth-store";
 
+const _http = axios.create({
+    baseURL: API_URL,
+    headers: {
+        'content-type': 'application/json',
+        'accept': 'application/json',
+        'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY1NjIwODczOSwiaWF0IjoxNjU2MTkwNzM5fQ.OAnp8Mrd0jmy7udNYbWtxjWDWBmsbWNgiJ3JqUNTDMHk4bsyg03Dg_zddWuIrx83nTBNtoROSxJzD4JY7haTWw',
+    },
+    credentials: true,
+})
+
 const useRoomsStore = create((set) => ({
     rooms: [],
     fetch: async () => {
-        const res = await fetch(API_URL + "/rooms");
-        const rooms = await res.json();
-        set((state) => ({ rooms }))
+        await _http.get('/rooms')
+            .then(({data}) => {
+                set(() => ({ rooms: data }))
+            })
     },
     fetchWithCategorie: async (categorie) => {
         switch(categorie) {
@@ -56,21 +69,11 @@ const useRoomsStore = create((set) => ({
         })
     },
     updateRoom: async (room) => {
-        await fetch(API_URL + '/rooms', {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(room),
-        }).then(() => {
-            set((state) => ({ rooms: state.rooms.map(currentRoom => {
-                if (currentRoom.id === room.id) {
-                    return room;
-                }
-                return currentRoom;
+        await _http.post("/rooms/update", JSON.stringify(room))
+            .then(() => ({ rooms: state.rooms.map(currentRoom => {
+                return currentRoom.id === room.id ? room : currentRoom
             })}))
-        }).catch(console.err)
+            .catch(console.error)
     },
 }))
 

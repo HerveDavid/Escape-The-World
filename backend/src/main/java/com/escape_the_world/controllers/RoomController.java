@@ -24,8 +24,13 @@ public class RoomController {
         return roomService.getById(id);
     }
 
-    @RequestMapping(path = "/add", method = RequestMethod.POST)
-    public Room createOrUpdate(@RequestBody @Valid Room room) {
+    @RequestMapping(path = "/add", method = RequestMethod.PUT)
+    public Room create(@RequestBody @Valid Room room) {
+        return roomService.createOrUpdate(room);
+    }
+
+    @RequestMapping(path = "/update", method = RequestMethod.POST)
+    public Room update(@RequestBody @Valid Room room) {
         return roomService.createOrUpdate(room);
     }
 
