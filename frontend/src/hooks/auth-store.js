@@ -31,6 +31,9 @@ const useAuthStore = create(persist(
           const user = await res.json();
           set((_) => ({ ...user }));
       }
+    },
+    logout: () => {
+      set(() =>( { jwtToken : '', user: {}}));
     }
   }),
   {
@@ -40,30 +43,5 @@ const useAuthStore = create(persist(
     deserialize: (str) => JSON.parse(str),
   }
 ))
-
-// const useAuthStore = create((set) => ({
-//     jwtToken: "",
-//     user: { },
-//     authenticate: async ({username, password}) => {
-//         const res = await fetch(API_URL + "/authenticate", {
-//             method: 'POST',
-//             headers: {
-//                 'Accept': 'application/json',
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify({username, password}),
-//         })
-
-//         switch(res.status) {
-//           case 401:
-//             throw new Error("Password not matched");
-//           case 404:
-//             throw new Error(username + " not found");
-//           case 200:
-//             const user = await res.json();
-//             set((_) => ({ ...user }));
-//         }
-//     }
-// }))
 
 export default useAuthStore;

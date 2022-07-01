@@ -16,6 +16,7 @@ import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { XCircle as XCircleIcon } from '../icons/x-circle';
 import { Logo } from './logo';
 import { NavItem } from './nav-item';
+import useAuthStore from 'src/hooks/auth-store';
 
 const items = [
   {
@@ -48,10 +49,17 @@ const items = [
 export const DashboardSidebar = (props) => {
   const { open, onClose } = props;
   const router = useRouter();
+  const logout = useAuthStore(state => state.logout)
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'), {
     defaultMatches: true,
     noSsr: false
   });
+
+
+  const handleLogout = () => {
+    logout();
+    router.push("/");
+  }
 
   useEffect(
     () => {
@@ -148,6 +156,13 @@ export const DashboardSidebar = (props) => {
           ))}
         </Box>
         <Divider sx={{ borderColor: '#2D3748' }} />
+        <Box sx={{ flexGrow: 1 }}>
+          <Button
+            onClick={handleLogout}
+          >
+            Logout
+          </Button>
+        </Box>
       </Box>
     </>
   );
