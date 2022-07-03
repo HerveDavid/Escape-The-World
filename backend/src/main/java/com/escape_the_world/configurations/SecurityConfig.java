@@ -57,11 +57,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/authenticate", "/api", "/api/**", "/swagger-ui/**", "/users/register", "/rooms").permitAll()
-                .antMatchers("/rooms/add", "/rooms/update").hasRole("ADMIN")
+                .antMatchers("/rooms/add", "/rooms/remove/**", "/rooms/update").permitAll()
                 .anyRequest().authenticated().and().exceptionHandling()
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+//                        .antMatchers("/rooms/add", "/rooms/update").hasRole("ADMIN")
+
     }
 
 }
