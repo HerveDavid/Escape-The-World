@@ -2,6 +2,7 @@ import { roomsCategorie } from "src/hooks/rooms-categorie";
 import  {rooms as roomsMock, topRooms, adventureRooms, horrorRooms, moviesRooms} from "src/__mocks__/rooms";
 import create from "zustand";
 import http from "src/utils/http_api";
+import { ht } from "date-fns/locale";
 
 
 const useRoomsStore = create((set) => ({
@@ -13,18 +14,9 @@ const useRoomsStore = create((set) => ({
             })
     },
     fetchWithCategorie: async (categorie) => {
-        switch(categorie) {
-            case roomsCategorie.TOP:
-                return topRooms;
-            case roomsCategorie.ADVENTURE:
-                return adventureRooms;
-            case roomsCategorie.HORROR:
-                return horrorRooms;
-            case roomsCategorie.MOVIES:
-                return moviesRooms;
-            default:
-                return [];
-        }
+        const res = await http.get("/rooms/category/" + categorie)
+            .then()
+        return res.data;
     },
     addRoom: async (room) => {
         await http.put("/rooms/add", JSON.stringify(room))
