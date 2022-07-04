@@ -21,8 +21,8 @@ const categories = [
     type: roomsCategorie.HORROR,
   },
   {
-    label: "Movies",
-    type: roomsCategorie.MOVIES,
+    label: "Movie",
+    type: roomsCategorie.MOVIE,
   }
 ]
 

@@ -18,7 +18,7 @@ export function HomeSwiperCategorie({ categorie }) {
   useEffect(() => {
     fetchWithCategorie(categorie)
       .then(setRooms)
-  });
+  }, []);
   
   return (
     <Box sx={{ pt: 3 }}>
