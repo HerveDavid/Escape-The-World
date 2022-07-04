@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collection;
 import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -49,4 +50,8 @@ public class RoomController {
         roomService.remove(id);
     }
 
+    @RequestMapping(path = "/category/{name}", method = RequestMethod.GET)
+    public Collection<Room> findAllByCategory(@PathVariable(name = "name") String name) {
+        return roomService.findAllByCategory(name);
+    }
 }
