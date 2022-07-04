@@ -36,12 +36,12 @@ export function BookRoomDialog({ open, onClose, room }) {
       <DialogTitle>{room.title}</DialogTitle>
       <DialogContent>
         <DialogContentText>{room.description}</DialogContentText>
-        <Typography sx={{mt: 2}}>Availability</Typography>
+        <Typography sx={{mt: 2}}>Availabilities</Typography>
         <Box sx={{ mt: 2, flexGrow: 1 }}>
-          <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+          <Grid container spacing={{  }} columns={{  }}>
             {Array.from(Array(24)).map((_, index) => (
               <Grid item xs={2} sm={4} md={4} key={index}>
-                <Item>10:10</Item>
+                <Button>10:{index}</Button>
               </Grid>
             ))}
           </Grid>
