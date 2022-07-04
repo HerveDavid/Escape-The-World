@@ -32,6 +32,34 @@ const useAuthStore = create(persist(
           set((_) => ({ ...user }));
       }
     },
+    register: async (data) => {
+      await fetch(API_URL + "/users/register", {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      }).then(() => {
+        const res = fetch(API_URL + "/authenticate", {
+          method: 'POST',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({username: data.username, password: data.password}),
+        })
+  
+        switch(res.status) {
+          case 401:
+            throw new Error("Password not matched");
+          case 404:
+            throw new Error(data.username + " not found");
+          case 200:
+            const user = res.json();
+            set((_) => ({ ...user }));
+        }      })
+    },
     logout: () => {
       set(() =>( { jwtToken : '', user: {}}));
     }
