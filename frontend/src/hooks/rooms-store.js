@@ -1,8 +1,5 @@
-import { roomsCategorie } from "src/hooks/rooms-categorie";
-import  {rooms as roomsMock, topRooms, adventureRooms, horrorRooms, moviesRooms} from "src/__mocks__/rooms";
 import create from "zustand";
 import http from "src/utils/http_api";
-import { ht } from "date-fns/locale";
 
 
 const useRoomsStore = create((set) => ({

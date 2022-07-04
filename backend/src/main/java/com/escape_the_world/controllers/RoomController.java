@@ -52,6 +52,8 @@ public class RoomController {
 
     @RequestMapping(path = "/category/{name}", method = RequestMethod.GET)
     public Collection<Room> findAllByCategory(@PathVariable(name = "name") String name) {
+        if ("all".equals(name))
+            return roomService.getAll();
         return roomService.findAllByCategory(name);
     }
 }

@@ -6,6 +6,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { HomeSwiperCategorie } from "src/components/home/home-swiper-categorie";
 import { roomsCategorie } from "src/hooks/rooms-categorie";
+import useCategoriesStore from "src/hooks/categories-store";
 
 const categories = [
   {
