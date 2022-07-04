@@ -20,7 +20,7 @@ Pour lancer ensuite le frontend, suivre les commandes suivantes :
 
 ```
 cd frontend/
-npm run install
+npm install
 npm run dev
 ```
 
