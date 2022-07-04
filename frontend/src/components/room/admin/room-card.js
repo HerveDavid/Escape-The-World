@@ -133,7 +133,7 @@ export function RoomCard({ room, ...rest }) {
                 display: 'flex'
               }}
             >
-              <Rating readOnly value={3}></Rating>
+              <Rating readOnly value={room.rating || 0}></Rating>
             </Grid>
           </Grid>
         </Box>

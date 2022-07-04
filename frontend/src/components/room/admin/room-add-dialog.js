@@ -13,8 +13,15 @@ import {
   FormControl,
   Rating,
   Typography,
+  Select,
+  InputLabel,
+  MenuItem
 } from "@mui/material";
 import useRoomsStore from 'src/hooks/rooms-store';
+import { useEffect } from 'react';
+import useCategoriesStore from "src/hooks/categories-store";
+import { capitalizeFirstLetter } from 'src/utils/get-format-date';
+
 
 const validationSchema = Yup.object().shape({
     title: Yup.string()
@@ -22,6 +29,8 @@ const validationSchema = Yup.object().shape({
     description: Yup.string()
         .required('Room description is required')
         .max(300, 'Description should be minimaliste'),
+    category: Yup.string()
+        .required('Category is required'),
     capacity: Yup.number()
         .required('Room capacity is required')
         .min(1, 'need one player')
@@ -32,6 +41,7 @@ const validationSchema = Yup.object().shape({
 
 export function AddRoomDialog(props) {
   const { addRoom } = useRoomsStore();
+  const { categories, fetchAll } = useCategoriesStore();
   const { onClose, open } = props;
   const {
     register,
@@ -41,12 +51,23 @@ export function AddRoomDialog(props) {
     resolver: yupResolver(validationSchema)
   });
 
+  useEffect(fetchAll, [])
+
   const handleClose = () => {
     onClose();
   };
 
   function onSubmit(data) {
-    addRoom(data);
+    addRoom({
+      title: data.title,
+      description: data.description,
+      capacity: data.capacity,
+      duration: data.duration, 
+      rating : 3, 
+      category: {
+        name: data.category,
+      }
+    });
     onClose();
   }
 
@@ -84,6 +105,17 @@ export function AddRoomDialog(props) {
             {...register('description')}
             error={errors.description ? true : false}
           />
+          <Select
+              labelId="categorie-label"
+              id="demo-simple-select-disabled"
+              label="Categorie"
+              required
+              {...register("category")}
+          >
+            {categories && categories.map((category, index) => (
+                <MenuItem key={index} value={category.name}>{capitalizeFirstLetter(category.name)}</MenuItem>
+            ))}
+          </Select>
           <TextField
             autoFocus
             margin="dense"
