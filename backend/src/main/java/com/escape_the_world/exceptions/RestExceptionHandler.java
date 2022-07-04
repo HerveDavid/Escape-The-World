@@ -33,11 +33,20 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleResourceNotFoundException(ResourceNotFoundException e) {
         return new ResponseEntity<>(e.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND);
     }
-    @ExceptionHandler({ RessourceAlreadyExistException.class })
-    public ResponseEntity<Object> handleResourceNotFoundException(RessourceAlreadyExistException e) {
+    @ExceptionHandler({ ResourceAlreadyExistException.class })
+    public ResponseEntity<Object> handleResourceNotFoundException(ResourceAlreadyExistException e) {
         return new ResponseEntity<>(e.getMessage(), new HttpHeaders(), HttpStatus.CONFLICT);
     }
 
+    @ExceptionHandler({ UsernameNotFoundException.class })
+    public ResponseEntity<Object> handleUsernameNotFoundException(UsernameNotFoundException e) {
+        return new ResponseEntity<>(e.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({ PasswordNotMatchException.class })
+    public ResponseEntity<Object> handlePasswordNotMatchException(PasswordNotMatchException e) {
+        return new ResponseEntity(e.getMessage(), new HttpHeaders(), HttpStatus.UNAUTHORIZED);
+    }
 
 
 

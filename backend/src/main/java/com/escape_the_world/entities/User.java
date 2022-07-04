@@ -1,22 +1,21 @@
 package com.escape_the_world.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import net.minidev.json.annotate.JsonIgnore;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Entity
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class User implements Serializable {
 
     @Id
     @Column(unique = true)
@@ -40,6 +39,6 @@ public class User {
 
     @Column
     @NotBlank(message = "Password is mandatory")
-    @JsonIgnore
+    @JsonIgnore()
     private String password;
 }

@@ -14,8 +14,10 @@ import {
   Typography
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import useAuthStore from 'src/hooks/auth-store';
 
 const Register = () => {
+  const { register } = useAuthStore();
   const router = useRouter();
   const formik = useFormik({
     initialValues: {
@@ -31,6 +33,10 @@ const Register = () => {
         .email('Must be a valid email')
         .max(255)
         .required('Email is required'),
+      userName: Yup
+        .string()
+        .max(255)
+        .required('User name is required'),
       firstName: Yup
         .string()
         .max(255)
@@ -51,7 +57,7 @@ const Register = () => {
         )
     }),
     onSubmit: (data) => {
-      console.log(data);
+      register(data);
       router.push('/');
     }
   });
@@ -81,7 +87,7 @@ const Register = () => {
               component="a"
               startIcon={<ArrowBackIcon fontSize="small" />}
             >
-              Dashboard
+              Back
             </Button>
           </NextLink>
           <form onSubmit={formik.handleSubmit}>
@@ -100,6 +106,18 @@ const Register = () => {
                 Use your email to create a new account
               </Typography>
             </Box>
+            <TextField
+              error={Boolean(formik.touched.userName && formik.errors.userName)}
+              fullWidth
+              helperText={formik.touched.userName && formik.errors.userName}
+              label="User Name"
+              margin="normal"
+              name="userName"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              value={formik.values.userName}
+              variant="outlined"
+            />
             <TextField
               error={Boolean(formik.touched.firstName && formik.errors.firstName)}
               fullWidth

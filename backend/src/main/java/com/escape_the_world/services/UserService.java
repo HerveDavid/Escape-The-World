@@ -4,8 +4,10 @@ import com.escape_the_world.configurations.PasswordEncoderConfig;
 import com.escape_the_world.dto.requests.RegisterRequest;
 import com.escape_the_world.entities.Role;
 import com.escape_the_world.entities.User;
-import com.escape_the_world.exceptions.RessourceAlreadyExistException;
+import com.escape_the_world.exceptions.ResourceAlreadyExistException;
+import com.escape_the_world.exceptions.UsernameNotFoundException;
 import com.escape_the_world.repositories.UserRepository;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,7 +15,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -36,18 +37,18 @@ public class UserService implements UserDetailsService {
         return userRepository.save(user);
     }
 
-    public User register(RegisterRequest request) throws RessourceAlreadyExistException {
+    public User register(RegisterRequest request) throws ResourceAlreadyExistException {
 
-        // User is unique
+        // User need to be unique
         Optional<User> user = userRepository.findByUsername(request.getUsername());
         if (user.isPresent()) {
-            throw new RessourceAlreadyExistException(User.class, request.getUsername());
+            throw new ResourceAlreadyExistException(User.class, request.getUsername());
         }
 
         // Encoded password
         String encodedPassword = passwordEncoderConfig.getPasswordEncoder().encode(request.getPassword());
 
-        // User is a player by default
+        // User is a PLAYER by default
         return userRepository.save(new User(
                 request.getUsername(),
                 request.getFirstname(),
@@ -75,11 +76,17 @@ public class UserService implements UserDetailsService {
         userRepository.deleteById(username);
     }
 
+    @SneakyThrows
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username).orElseThrow(RuntimeException::new);
+    public UserDetails loadUserByUsername(String username) {
+
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isEmpty()) {
+            throw new UsernameNotFoundException(User.class, username);
+        }
+
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + user.get().getRole()));
+        return new org.springframework.security.core.userdetails.User(user.get().getUsername(), user.get().getPassword(), authorities);
     }
 }

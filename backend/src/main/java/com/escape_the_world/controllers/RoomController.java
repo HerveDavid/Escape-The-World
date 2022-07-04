@@ -1,18 +1,20 @@
 package com.escape_the_world.controllers;
 
-import com.escape_the_world.entities.Room;
 import com.escape_the_world.dto.requests.PaginationRequest;
+import com.escape_the_world.entities.Room;
 import com.escape_the_world.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.Collection;
 import java.util.List;
 
-@RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/room")
+@RestController
+@RequestMapping("/rooms")
 public class RoomController {
 
     @Autowired
@@ -23,12 +25,17 @@ public class RoomController {
         return roomService.getById(id);
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
-    public Room createOrUpdate(@RequestBody Room room) {
+    @RequestMapping(path = "/add", method = RequestMethod.PUT)
+    public Room create(@RequestBody @Valid Room room) {
         return roomService.createOrUpdate(room);
     }
 
-    @RequestMapping(path = "/all", method = RequestMethod.GET)
+    @RequestMapping(path = "/update", method = RequestMethod.POST)
+    public Room update(@RequestBody @Valid Room room) {
+        return roomService.createOrUpdate(room);
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
     public List<Room> getAll() {
         return roomService.getAll();
     }
@@ -43,4 +50,10 @@ public class RoomController {
         roomService.remove(id);
     }
 
+    @RequestMapping(path = "/category/{name}", method = RequestMethod.GET)
+    public Collection<Room> findAllByCategory(@PathVariable(name = "name") String name) {
+        if ("all".equals(name))
+            return roomService.getAll();
+        return roomService.findAllByCategory(name);
+    }
 }

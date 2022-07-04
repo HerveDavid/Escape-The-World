@@ -7,37 +7,47 @@ import { Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Facebook as FacebookIcon } from '../icons/facebook';
 import { Google as GoogleIcon } from '../icons/google';
+import useAuthStore from "src/hooks/auth-store";
 
 const Login = () => {
+  const authenticate = useAuthStore(state => state.authenticate);
   const router = useRouter();
   const formik = useFormik({
     initialValues: {
-      email: 'demo@devias.io',
+      username: 'Username',
       password: 'Password123'
     },
     validationSchema: Yup.object({
-      email: Yup
+      username: Yup
         .string()
-        .email(
-          'Must be a valid email')
         .max(255)
         .required(
-          'Email is required'),
+          'Username is required'),
       password: Yup
         .string()
         .max(255)
         .required(
           'Password is required')
     }),
-    onSubmit: () => {
-      router.push('/');
+    onSubmit: async () => {
+      try {
+        await authenticate({
+          username: formik.values.username,
+          password: formik.values.password,
+        })
+
+        router.push("/");
+
+      } catch (error) {
+        console.error(error)
+      }
     }
   });
 
   return (
     <>
       <Head>
-        <title>Login | Material Kit</title>
+        <title>Login</title>
       </Head>
       <Box
         component="main"
@@ -57,7 +67,7 @@ const Login = () => {
               component="a"
               startIcon={<ArrowBackIcon fontSize="small" />}
             >
-              Dashboard
+              Back
             </Button>
           </NextLink>
           <form onSubmit={formik.handleSubmit}>
@@ -124,20 +134,19 @@ const Login = () => {
                 color="textSecondary"
                 variant="body1"
               >
-                or login with email address
+                or login with username
               </Typography>
             </Box>
             <TextField
-              error={Boolean(formik.touched.email && formik.errors.email)}
+              error={Boolean(formik.touched.username && formik.errors.username)}
               fullWidth
-              helperText={formik.touched.email && formik.errors.email}
-              label="Email Address"
+              helperText={formik.touched.username && formik.errors.username}
+              label="Username"
               margin="normal"
-              name="email"
+              name="username"
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              type="email"
-              value={formik.values.email}
+              value={formik.values.username}
               variant="outlined"
             />
             <TextField

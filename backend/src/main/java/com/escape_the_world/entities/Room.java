@@ -6,10 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity(name = "Room")
@@ -45,4 +42,14 @@ public class Room {
     @Column
     @Getter @Setter
     private int capacity;
+
+    @Column
+    @Getter @Setter
+    private int rating;
+
+    @OneToOne
+    @JoinColumn(name = "category")
+    @Getter @Setter
+    private Category category;
+
 }

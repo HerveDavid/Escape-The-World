@@ -1,24 +1,57 @@
 import Head from 'next/head';
 import { CacheProvider } from '@emotion/react';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import { LocalizationProvider } from '@mui/x-date-pickers'
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { createEmotionCache } from '../utils/create-emotion-cache';
 import { theme } from '../theme';
+import { useRouter } from 'next/router';
+import useAuthStore from 'src/hooks/auth-store';
+import NotFound from 'src/pages/404';
+import Tours from 'src/pages/tours';
+import { CustomerLayout } from 'src/components/customer-layout';
+import Dashboard from './dashboard';
+import { DashboardLayout } from 'src/components/dashboard-layout';
 
 const clientSideEmotionCache = createEmotionCache();
 
 const App = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
-  const getLayout = Component.getLayout ?? ((page) => page);
+  // Check role of user
+  let allowed = true;
+  let getLayout = Component.getLayout ?? ((page) => page);
+  let ComponentToRender = Component;
+  const router = useRouter();
+  const user = useAuthStore(state => state.user);
+
+  // Forbidden some path
+  if (router.pathname.startsWith("/dashboard") && user?.role != "ADMIN") {
+    allowed = false;
+  }
+  if (router.pathname.startsWith("/settings") && user?.role != "ADMIN") {
+    allowed = false;
+  }
+  if (router.pathname.startsWith("/customers") && user?.role != "ADMIN") {
+    allowed = false;
+  }
+
+  if (router.pathname.startsWith("/rooms") && user?.role != "ADMIN") {
+    ComponentToRender = Tours;
+    getLayout = ((page) => <CustomerLayout>{page}</CustomerLayout>)
+  }
+
+  if (router.pathname.endsWith("/") && user?.role == "ADMIN") {
+    ComponentToRender = Dashboard;
+    getLayout = ((page) => <DashboardLayout>{page}</DashboardLayout>)
+  }
 
   return (
     <CacheProvider value={emotionCache}>
       <Head>
         <title>
-          Material Kit Pro
+          Escape the World
         </title>
         <meta
           name="viewport"
@@ -28,9 +61,9 @@ const App = (props) => {
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          {getLayout(<Component {...pageProps} />)}
+          {allowed ? getLayout(<ComponentToRender {...pageProps} />) : <NotFound /> }
         </ThemeProvider>
-      </LocalizationProvider>
+      </LocalizationProvider>l
     </CacheProvider>
   );
 };

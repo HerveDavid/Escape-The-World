@@ -1,10 +1,10 @@
 package com.escape_the_world.controllers;
 
-import com.escape_the_world.dto.reponses.RegisterReponse;
+import com.escape_the_world.dto.reponses.RegisterResponse;
 import com.escape_the_world.dto.requests.PaginationRequest;
 import com.escape_the_world.dto.requests.RegisterRequest;
 import com.escape_the_world.entities.User;
-import com.escape_the_world.exceptions.RessourceAlreadyExistException;
+import com.escape_the_world.exceptions.ResourceAlreadyExistException;
 import com.escape_the_world.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -35,9 +35,9 @@ public class UserController {
 
 
     @RequestMapping(path = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> register(@RequestBody @Valid RegisterRequest request) throws RessourceAlreadyExistException {
+    public ResponseEntity<?> register(@RequestBody @Valid RegisterRequest request) throws ResourceAlreadyExistException {
         User user = userService.register(request);
-        return ResponseEntity.ok(new RegisterReponse(
+        return ResponseEntity.ok(new RegisterResponse(
                 user.getUsername(),
                 user.getFirstname(),
                 user.getLastname(),
@@ -45,7 +45,7 @@ public class UserController {
         ));
     }
 
-    @RequestMapping(path = "/all", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public List<User> getAll() {
         return userService.getAll();
     }

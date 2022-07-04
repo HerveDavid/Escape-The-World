@@ -55,12 +55,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
-                .authorizeRequests().antMatchers("/authenticate", "/api", "/api/**", "/swagger-ui/**", "/user/register").permitAll()
+                .authorizeRequests()
+                .antMatchers("/authenticate", "/api", "/api/**", "/swagger-ui/**").permitAll()
+                .antMatchers("/users", "/users/register").permitAll()
+                .antMatchers("/rooms", "/rooms/add", "/rooms/remove/**", "/rooms/update", "/rooms/category/**").permitAll()
+                .antMatchers("/categories").permitAll()
                 .anyRequest().authenticated().and().exceptionHandling()
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-//                        .antMatchers("/users/password", "/users/delete", "/plants/delete").hasRole("ADMIN")
+//                        .antMatchers("/rooms/add", "/rooms/update").hasRole("ADMIN")
+
     }
 
 }
